@@ -31,6 +31,7 @@ class Mutex::Monitor
 {
 protected:
     Monitor(Mutex &m);
+    Mutex &m;
 
 public:
     class TimeoutException;
@@ -47,7 +48,7 @@ class Mutex::Monitor::TimeoutException : exception
 public:
     TimeoutException();
     const char *what() const noexcept override;
-};
+} timeoutException;
 
 class Mutex::Lock : Mutex::Monitor
 {

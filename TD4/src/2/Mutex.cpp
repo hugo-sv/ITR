@@ -36,42 +36,54 @@ void Mutex::unlock()
     pthread_mutex_unlock(&this->posixId);
 }
 
-Mutex::Monitor::Monitor(Mutex &m)
+Mutex::Monitor::Monitor(Mutex &m) : m(m)
 {
-    // Lock Mutex
-    m.lock();
 }
+
 void Mutex::Monitor::wait()
 {
-    // pthread_mutex_lock(&p_counter->mutex);
-    // while (p_counter->value > 0)
-    // {
-    //     pthread_cond_wait(&p_counter->isEmpty,
-    //                       &p_counter->mutex);
-    // }
-    // pthread_mutex_unlock(&p_counter->mutex);
-
-    // wait on posix condition
+    pthread_cond_wait(&this->m.posixCondId, &this->m.posixId);
 }
-bool Mutex::Monitor::wait(double timeout_ms) {}
-void Mutex::Monitor::notify() {}
+bool Mutex::Monitor::wait(double timeout_ms)
+{
+    timespec deadline = timespec_now() + timespec_from_ms(timeout_ms);
+    pthread_cond_timedwait(&this->m.posixCondId, &this->m.posixId, &deadline);
+}
+void Mutex::Monitor::notify()
+{
+    pthread_cond_signal(&this->m.posixCondId);
+}
 void Mutex::Monitor::notifyAll()
 {
-    // pthread_mutex_lock(&p_counter->mutex);
-    // if (p_counter->value > 0)
-    // {
-    //     p_counter->value -= 1; // Décrémentation
-    //     pthread_cond_broadcast(
-    //         &p_counter->isEmpty);
-    // }
-    // pthread_mutex_unlock(&p_counter->mutex);
+    pthread_cond_broadcast(&this->m.posixCondId);
 }
 
-Mutex::Lock::Lock(Mutex &m) : Mutex::Monitor::Monitor(m) {}
-Mutex::Lock::Lock(Mutex &m, double timeout_ms) : Mutex::Monitor::Monitor(m) {}
-Mutex::Lock::~Lock() {}
-Mutex::TryLock::TryLock(Mutex &m) : Mutex::Monitor::Monitor(m) {}
-Mutex::TryLock::~TryLock() {}
+Mutex::Lock::Lock(Mutex &m) : Mutex::Monitor::Monitor(m)
+{
+    this->m.lock();
+}
+Mutex::Lock::Lock(Mutex &m, double timeout_ms) : Mutex::Monitor::Monitor(m)
+{
+    if (!this->m.lock(timeout_ms))
+    {
+        throw timeoutException;
+    }
+}
+Mutex::Lock::~Lock()
+{
+    this->m.unlock();
+}
+Mutex::TryLock::TryLock(Mutex &m) : Mutex::Monitor::Monitor(m)
+{
+    if (!this->m.trylock())
+    {
+        throw timeoutException;
+    }
+}
+Mutex::TryLock::~TryLock()
+{
+    this->m.unlock();
+}
 
 const char *Mutex::Monitor::TimeoutException::what() const noexcept
 {
