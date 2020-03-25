@@ -47,7 +47,7 @@ void Mutex::Monitor::wait()
 bool Mutex::Monitor::wait(double timeout_ms)
 {
     timespec deadline = timespec_now() + timespec_from_ms(timeout_ms);
-    pthread_cond_timedwait(&this->m.posixCondId, &this->m.posixId, &deadline);
+    return !(pthread_cond_timedwait(&this->m.posixCondId, &this->m.posixId, &deadline) == ETIMEDOUT);
 }
 void Mutex::Monitor::notify()
 {
@@ -66,7 +66,7 @@ Mutex::Lock::Lock(Mutex &m, double timeout_ms) : Mutex::Monitor::Monitor(m)
 {
     if (!this->m.lock(timeout_ms))
     {
-        throw timeoutException;
+        throw TimeoutException();
     }
 }
 Mutex::Lock::~Lock()
@@ -77,12 +77,16 @@ Mutex::TryLock::TryLock(Mutex &m) : Mutex::Monitor::Monitor(m)
 {
     if (!this->m.trylock())
     {
-        throw timeoutException;
+        throw TimeoutException();
     }
 }
 Mutex::TryLock::~TryLock()
 {
     this->m.unlock();
+}
+
+Mutex::Monitor::TimeoutException::TimeoutException() : exception()
+{
 }
 
 const char *Mutex::Monitor::TimeoutException::what() const noexcept

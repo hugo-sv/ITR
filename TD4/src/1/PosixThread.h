@@ -2,7 +2,7 @@
 #define PosixThread_h_INCLUDED
 #include <iostream>
 #include <pthread.h>
-#include "../../TD1/posixHelpers.h"
+#include "../../../TD1/posixHelpers.h"
 using namespace std;
 
 class PosixThread

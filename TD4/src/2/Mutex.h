@@ -2,7 +2,8 @@
 #define Mutex_h_INCLUDED
 #include <iostream>
 #include <pthread.h>
-#include "../../TD1/posixHelpers.h"
+#include <exception>
+#include "../../../TD1/posixHelpers.h"
 using namespace std;
 
 class Mutex
@@ -43,14 +44,14 @@ public:
     void notifyAll();
 };
 
-class Mutex::Monitor::TimeoutException : exception
+class Mutex::Monitor::TimeoutException : public exception
 {
 public:
     TimeoutException();
     const char *what() const noexcept override;
-} timeoutException;
+};
 
-class Mutex::Lock : Mutex::Monitor
+class Mutex::Lock : public Mutex::Monitor
 {
 public:
     Lock(Mutex &m);
@@ -58,7 +59,7 @@ public:
     ~Lock();
 };
 
-class Mutex::TryLock : Mutex::Monitor
+class Mutex::TryLock : public Mutex::Monitor
 {
 public:
     TryLock(Mutex &m);

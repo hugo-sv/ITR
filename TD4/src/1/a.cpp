@@ -33,5 +33,19 @@ int main(void)
         cout << "Join : " << a << endl;
         cout << "Execution time = " << b.execTime_ms() << endl;
     }
+    {
+        cout << "Experiment 3\n";
+        volatile int a = 0;
+        Incrementer b((void *)&a, 100000000);
+        Incrementer c((void *)&a, 100000000);
+        Incrementer d((void *)&a, 100000000);
+        b.start();
+        c.start();
+        d.start();
+        b.join();
+        c.join();
+        d.join();
+        cout << "Total : " << a << endl;
+    }
     return 0;
 }
