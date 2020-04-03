@@ -36,9 +36,9 @@ int main(void)
     {
         cout << "Experiment 3\n";
         volatile int a = 0;
-        Incrementer b((void *)&a, 100000000);
-        Incrementer c((void *)&a, 100000000);
-        Incrementer d((void *)&a, 100000000);
+        Incrementer b((void *)&a, 1000000);
+        Incrementer c((void *)&a, 1000000);
+        Incrementer d((void *)&a, 1000000);
         b.start();
         c.start();
         d.start();

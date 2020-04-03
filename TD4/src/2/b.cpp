@@ -1,22 +1,32 @@
 #include <iostream>
 #include "IncrementerMut.h"
 #include "Mutex.h"
+#include <vector>
 using namespace std;
 
 int main(void)
 {
-    cout << "Experiment 1\n";
-    volatile int a = 0;
+    int total = 1000000;
+    int total_incrementers = 3;
+    cout << "Expected result :" << total * total_incrementers << "\n";
+    volatile int sum = 0;
+    std::vector<IncrementerMut> incrementers;
     Mutex mut = Mutex();
-    IncrementerMut b((void *)&a, 1000, mut);
-    IncrementerMut c((void *)&a, 1000, mut);
-    IncrementerMut d((void *)&a, 1000, mut);
-    b.start();
-    c.start();
-    d.start();
-    b.join();
-    c.join();
-    d.join();
-    cout << "Total : " << a << endl;
+
+    for (int i = 0; i < total_incrementers; i++)
+    {
+        incrementers.push_back(IncrementerMut((void *)&sum, total, mut));
+    }
+
+    for (IncrementerMut &incrementer : incrementers)
+    {
+        incrementer.start();
+    }
+
+    for (IncrementerMut &incrementer : incrementers)
+    {
+        incrementer.join();
+    }
+    cout << "Result : " << sum << endl;
     return 0;
 }
