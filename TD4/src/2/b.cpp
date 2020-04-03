@@ -6,13 +6,13 @@ using namespace std;
 
 int main(void)
 {
-    int total = 1000000;
-    int total_incrementers = 3;
-    cout << "Expected result :" << total * total_incrementers << "\n";
+    int total = 1;
+    int total_incrementers = 2;
     volatile int sum = 0;
-    std::vector<IncrementerMut> incrementers;
+
     Mutex mut = Mutex();
 
+    std::vector<IncrementerMut> incrementers;
     for (int i = 0; i < total_incrementers; i++)
     {
         incrementers.push_back(IncrementerMut((void *)&sum, total, mut));
@@ -27,6 +27,5 @@ int main(void)
     {
         incrementer.join();
     }
-    cout << "Result : " << sum << endl;
     return 0;
 }

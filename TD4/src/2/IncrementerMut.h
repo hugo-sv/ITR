@@ -10,7 +10,7 @@ private:
     void *data;
     int count;
     void run();
-    Mutex &mut;
+    Mutex mut;
 
 public:
     IncrementerMut(void *data, int count, Mutex &mut);
