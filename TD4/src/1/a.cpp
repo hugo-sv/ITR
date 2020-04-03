@@ -1,51 +1,64 @@
 #include <iostream>
 #include "Incrementer.h"
+#include <vector>
 using namespace std;
 
 int main(void)
 {
     {
-        cout << "Experiment 1\n";
+        cout << "1 - Testing Join\n";
         volatile int a = 0;
         Incrementer b((void *)&a, 100000000);
         b.start();
-        cout << "start : " << a << endl;
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
         Incrementer::sleep_ms(100);
-        cout << "100 ms sleep : " << a << endl;
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
+        cout << "Joining ...\n";
         b.join();
-        cout << "Join : " << a << endl;
-        cout << "Execution time = " << b.execTime_ms() << endl;
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
     }
     {
-        cout << "Experiment 2\n";
+        cout << "2 - Testing Join with timeout\n";
         volatile int a = 0;
         Incrementer b((void *)&a, 100000000);
         b.start();
-        cout << "start : " << a << endl;
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
         Incrementer::sleep_ms(50);
-        cout << "50 ms sleep : " << a << endl;
-        cout << "100 ms join -> " << b.join(100);
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
+        cout << "Joining with 100ms timeout : " << b.join(100) << "\n";
         // Ending line to write the rest because, otherwise, a would be printed before executiong join.
-        cout << " : " << a << endl;
-        cout << "500 ms join -> " << b.join(500);
-        cout << " : " << a << endl;
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
+        cout << "Joining with 500ms timeout : " << b.join(500) << "\n";
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
+        cout << "Joining ...\n";
         b.join();
-        cout << "Join : " << a << endl;
-        cout << "Execution time = " << b.execTime_ms() << endl;
+        cout << "Execution time : " << b.execTime_ms() << " \t\tCounter Value : " << a << endl;
     }
     {
-        cout << "Experiment 3\n";
-        volatile int a = 0;
-        Incrementer b((void *)&a, 1000000);
-        Incrementer c((void *)&a, 1000000);
-        Incrementer d((void *)&a, 1000000);
-        b.start();
-        c.start();
-        d.start();
-        b.join();
-        c.join();
-        d.join();
-        cout << "Total : " << a << endl;
+        cout << "3 - Testing concurrency\n";
+        int total = 1000000;
+        int total_incrementers = 3;
+        cout << total_incrementers << " threads will count from 0 to " << total << ".\n";
+        cout << "Expected result : " << total * total_incrementers << ".\n";
+        volatile int sum = 0;
+        std::vector<Incrementer> incrementers;
+        // Creating Incrementer workers
+        for (int i = 0; i < total_incrementers; i++)
+        {
+            incrementers.push_back(Incrementer((void *)&sum, total));
+        }
+        // Starting the workers
+        for (Incrementer &incrementer : incrementers)
+        {
+            incrementer.start();
+        }
+        // Joining the workers
+        for (Incrementer &incrementer : incrementers)
+        {
+            incrementer.join();
+        }
+        cout << "Result : " << sum << endl;
+        return 0;
     }
     return 0;
 }
