@@ -7,7 +7,7 @@ int main(void)
 {
     cout << "Experiment 1\n";
     volatile int a = 0;
-    Mutex mut;
+    Mutex mut = Mutex();
     IncrementerMut b((void *)&a, 1000, mut);
     IncrementerMut c((void *)&a, 1000, mut);
     IncrementerMut d((void *)&a, 1000, mut);

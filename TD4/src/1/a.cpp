@@ -22,8 +22,8 @@ int main(void)
         Incrementer b((void *)&a, 100000000);
         b.start();
         cout << "start : " << a << endl;
-        Incrementer::sleep_ms(100);
-        cout << "100 ms sleep : " << a << endl;
+        Incrementer::sleep_ms(50);
+        cout << "50 ms sleep : " << a << endl;
         cout << "100 ms join -> " << b.join(100);
         // Ending line to write the rest because, otherwise, a would be printed before executiong join.
         cout << " : " << a << endl;

@@ -13,6 +13,6 @@ private:
     Mutex mut;
 
 public:
-    IncrementerMut(void *data, int count, Mutex mut);
+    IncrementerMut(void *data, int count, Mutex &mut);
 };
 #endif

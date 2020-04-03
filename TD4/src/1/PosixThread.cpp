@@ -7,19 +7,16 @@ PosixThread::PosixThread()
 }
 PosixThread::PosixThread(pthread_t posixId)
 {
-    // Is it always active ?
     this->isActive = false;
-    if (!posixId)
+    sched_param schedParams;
+    int p_schedPolicy;
+    if (!posixId || pthread_getschedparam(posixId, &p_schedPolicy, &schedParams) != 0)
     {
         throw Exception();
     }
-
     this->posixId = posixId;
     pthread_attr_init(&this->posixAttr);
-    int schedPolicy;
-    int priority;
-    this->getScheduling(&schedPolicy, &priority);
-    this->setScheduling(schedPolicy, priority);
+    this->setScheduling(p_schedPolicy, schedParams.sched_priority);
 }
 PosixThread::~PosixThread()
 {
@@ -40,10 +37,12 @@ void PosixThread::join()
 }
 bool PosixThread::join(double timeout_ms)
 {
-    // Does it work ?
     struct timespec absTime = timespec_now() + timespec_from_ms(timeout_ms);
     bool output = !(bool)pthread_timedjoin_np(this->posixId, nullptr, &absTime);
-    this->isActive = false;
+    if (output)
+    {
+        this->isActive = false;
+    }
     return output;
 }
 bool PosixThread::setScheduling(int schedPolicy, int priority)

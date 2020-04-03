@@ -6,7 +6,7 @@ void Thread::start()
 {
     this->startTime_ = timespec_now();
     this->stopTime_ = timespec_from_ms(0);
-    PosixThread::start(Thread::call_run, this);
+    this->PosixThread::start(Thread::call_run, this);
 }
 
 void Thread::sleep_ms(double delay_ms)
@@ -33,12 +33,10 @@ double Thread::execTime_ms()
     return this->stopTime_ms() - this->startTime_ms();
 }
 
-void Thread::run() {}
-
 void *Thread::call_run(void *v_thread)
 {
-    static_cast<Thread *>(v_thread)->run();
-    // Should we set stopTime this way ?
-    static_cast<Thread *>(v_thread)->stopTime_ = timespec_now();
+    Thread *t_thread = (Thread *)v_thread;
+    t_thread->run();
+    t_thread->stopTime_ = timespec_now();
     return v_thread;
 }
