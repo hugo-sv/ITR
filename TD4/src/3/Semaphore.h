@@ -12,6 +12,8 @@ private:
 
 public:
     Semaphore(unsigned int initCount, unsigned int maxCount);
+    Semaphore(unsigned int maxCount);
+    Semaphore();
     void give();
     void take();
     bool take(double timeout_ms);

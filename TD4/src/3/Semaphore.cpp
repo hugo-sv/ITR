@@ -4,6 +4,17 @@ Semaphore::Semaphore(unsigned int initCount = 0, unsigned int maxCount = UINT16_
 {
     this->m = Mutex();
 }
+
+Semaphore::Semaphore(unsigned int maxCount) : count(0), maxCount(maxCount)
+{
+    this->m = Mutex();
+}
+
+Semaphore::Semaphore() : count(0), maxCount(UINT16_MAX)
+{
+    this->m = Mutex();
+}
+
 void Semaphore::give()
 {
     Mutex::Lock l(this->m);
