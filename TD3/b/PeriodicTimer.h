@@ -1,6 +1,6 @@
-#ifndef PerioricTimer_h_INCLUDED
-#define PerioricTimer_h_INCLUDED
-#include "timer.h"
+#ifndef PeriodicTimer_h_INCLUDED
+#define PeriodicTimer_h_INCLUDED
+#include "Timer.h"
 using namespace std;
 
 class PeriodicTimer : public Timer

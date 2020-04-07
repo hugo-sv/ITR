@@ -1,7 +1,7 @@
 #ifndef CountDown_h_INCLUDED
 #define CountDown_h_INCLUDED
-#include "periodicTimer.h"
-#include "timer.h"
+#include "PeriodicTimer.h"
+#include "Timer.h"
 using namespace std;
 
 class CountDown : public PeriodicTimer
