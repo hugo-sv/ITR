@@ -1,5 +1,10 @@
 #include "ActiveObject.h"
 
+ActiveObject::ActiveObject()
+{
+    this->reqFifo = RequestFifo();
+}
+
 void ActiveObject::run()
 {
     while (true)

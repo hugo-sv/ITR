@@ -9,6 +9,8 @@ void Client::run()
     timespec start_time = timespec_now();
     CrunchReq *req = acalc->async_crunch(this->crunchSeed);
     // ...
+    timespec_wait(timespec_from_ms(1500));
+    // ...
     double result = req->waitReturn();
     cout << "Client " << this->crunchSeed << " recieved a result : " << result << " in " << timespec_to_ms(timespec_now() - start_time) << "\n";
     // deleting object of polymorphic class type 'CrunchReq' which has non-virtual destructor might cause undefined behavior

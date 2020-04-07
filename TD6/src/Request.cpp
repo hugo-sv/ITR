@@ -2,7 +2,7 @@
 
 Request::Request()
 {
-    this->returnSema = Semaphore(0, 1);
+    this->returnSema = Semaphore(1, 1);
 }
 
 // Request::~Request() {}
