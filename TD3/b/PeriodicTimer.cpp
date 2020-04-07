@@ -1,4 +1,4 @@
-#include "periodicTimer.h"
+#include "PeriodicTimer.h"
 
 PeriodicTimer::PeriodicTimer() : Timer() {}
 

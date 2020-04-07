@@ -1,4 +1,4 @@
-#include "chrono.h"
+#include "Chrono.h"
 Chrono::Chrono()
 {
     this->startTime_ = timespec_now();
