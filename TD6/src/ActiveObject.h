@@ -1,13 +1,14 @@
 #ifndef ActiveObject_h_INCLUDED
 #define ActiveObject_h_INCLUDED
 #include "../../TD4/src/1/Thread.h"
-#include "RequestFifo.h"
+#include "../../TD4/src/4/Fifo.hpp"
+#include "Request.h"
 using namespace std;
 
 class ActiveObject : public Thread
 {
 protected:
-    RequestFifo reqFifo;
+    Fifo<Request *> reqFifo;
     void run();
 
 public:

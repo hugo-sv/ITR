@@ -1,8 +1,9 @@
 #include "ActiveObject.h"
+#include "Request.h"
 
 ActiveObject::ActiveObject()
 {
-    this->reqFifo = RequestFifo();
+    this->reqFifo = Fifo<Request *>();
 }
 
 void ActiveObject::run()
