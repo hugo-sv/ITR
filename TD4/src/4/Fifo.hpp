@@ -40,7 +40,7 @@ template <class T>
 T Fifo<T>::pop()
 {
     Mutex::Lock l(this->m);
-    while (this->elements.empty)
+    while (this->elements.empty())
     {
         l.wait();
     }

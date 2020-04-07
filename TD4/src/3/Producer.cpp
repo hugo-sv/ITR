@@ -4,10 +4,10 @@ Producer::Producer(Semaphore &s, int id) : Thread(), id(id), s(s) {}
 
 void Producer::run()
 {
-    s.take();
-    cout << "\tLa tache " << this->id << " a pris un jeton\n";
+    this->s.take();
+    cout << "\tProducer " << this->id << " took a token\n";
     // Process
     timespec_wait(timespec_from_ms(100));
-    s.give();
-    cout << "\tLa tache " << this->id << " a donné un jeton\n";
+    this->s.give();
+    cout << "\tProducer " << this->id << " gave a token\n";
 }

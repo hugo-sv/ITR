@@ -32,6 +32,7 @@ int main(void)
     {
         producer.join();
     }
+    // Each producer require 100 ms to perform a task. With 10 producers and 5 tokens, all tasks should be performed in 200ms
     cout << "Taches réalisées en " << timespec_to_ms(timespec_now() - start_time) << " ms\n";
     return 0;
 }
