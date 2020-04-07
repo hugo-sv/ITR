@@ -13,8 +13,11 @@ int main()
     assert(abs(timespec_to_ms(tp1) + timespec_to_ms(tp2)) < 1);
     cout << "timespec_to_ms and timespec_from_ms tested\n";
 
+    assert(abs(timespec_to_ms(timespec_negate(tp1)) + timespec_to_ms(tp1)) < 1);
+    cout << "negate operator tested\n";
+
     assert(abs(timespec_to_ms(-tp1) + timespec_to_ms(tp1)) < 1);
-    cout << "- operator tested\n";
+    cout << "negate - operator tested\n";
 
     tp3 = timespec_now();
     sleep(1);
