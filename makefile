@@ -1,35 +1,17 @@
 CXX      := -g++
-CXXFLAGS := -Wall -Wextra -03
-LDFLAGS  := -lstdc++ -pthread
+CXXFLAGS := -I ./includes/ -Wall -Wextra -O3
+LDFLAGS  := -lrt -pthread
 BUILD    := ./build
-OBJ_DIR  := $(BUILD)/objects
-APP_DIR  := $(BUILD)/apps
-TARGET   := program
-INCLUDE  := -Iinclude/
-SRC      :=                      \
-   $(wildcard src/module1/*.cpp) \
-   $(wildcard src/module2/*.cpp) \
-   $(wildcard src/module3/*.cpp) \
-   $(wildcard src/*.cpp)         \
 
-OBJECTS  := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
+%.o:%.c
+	$(CXX) $(CXXFLAGS) $< -o $@  $(LDFLAGS)
 
-all: build $(APP_DIR)/$(TARGET)
+td1: src/td1/posixHelpers.o src/td1/posixHelpers.test.o src/td1/posixTimer.o src/td1/posixTimer.test.o src/td1/IncrC.o src/td1/mesureExecution.o
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td1_a.out src/td1/posixHelpers.o src/td1/posixHelpers.test.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td1_b.out src/td1/posixHelpers.o src/td1/posixTimer.test.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td1_c.out src/td1/posixHelpers.o src/td1/IncrC.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td1_d.out src/td1/posixHelpers.o src/td1/mesureExecution.o $(LDFLAGS)
 
-$(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@ $(LDFLAGS)
-
-$(APP_DIR)/$(TARGET): $(OBJECTS)
-	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -o $(APP_DIR)/$(TARGET) $^ $(LDFLAGS)
-
-.PHONY: all build clean debug release
-
-build:
-	@mkdir -p $(APP_DIR)
-	@mkdir -p $(OBJ_DIR)
-
-clean:
-	-@rm -rvf $(OBJ_DIR)/*
-	-@rm -rvf $(APP_DIR)/*
+clean: 
+	rm -rvf build/*
+	rm -f src/*/*.o
