@@ -1,5 +1,5 @@
 #include <iostream>
-#include "IncrementerMut.h"
+#include "BIncrementer.h"
 #include "td4/Mutex.h"
 #include <vector>
 using namespace std;
@@ -7,24 +7,24 @@ using namespace std;
 int main(void)
 {
     int total = 1000000;
-    int total_incrementers = 3;
+    int total_incrementers = 10;
     cout << total_incrementers << " threads will count from 0 to " << total << ".\n";
     cout << "Expected result : " << total * total_incrementers << ".\n";
     volatile int sum = 0;
-    std::vector<IncrementerMut> incrementers;
+    std::vector<BIncrementer> incrementers;
     Mutex mut = Mutex();
     // Creating Incrementer workers
     for (int i = 0; i < total_incrementers; i++)
     {
-        incrementers.push_back(IncrementerMut((void *)&sum, total, mut));
+        incrementers.push_back(BIncrementer((void *)&sum, total, mut));
     }
     // Starting the workers
-    for (IncrementerMut &incrementer : incrementers)
+    for (BIncrementer &incrementer : incrementers)
     {
         incrementer.start();
     }
     // Joining the workers
-    for (IncrementerMut &incrementer : incrementers)
+    for (BIncrementer &incrementer : incrementers)
     {
         incrementer.join();
     }

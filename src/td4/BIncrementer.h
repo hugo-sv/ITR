@@ -1,10 +1,10 @@
-#ifndef IncrementerMut_h_INCLUDED
-#define IncrementerMut_h_INCLUDED
+#ifndef BIncrementer_h_INCLUDED
+#define BIncrementer_h_INCLUDED
 #include "td4/Thread.h"
 #include "td4/Mutex.h"
 using namespace std;
 
-class IncrementerMut : public Thread
+class BIncrementer : public Thread
 {
 private:
     void *data;
@@ -13,6 +13,6 @@ private:
     Mutex &mut;
 
 public:
-    IncrementerMut(void *data, int count, Mutex &mut);
+    BIncrementer(void *data, int count, Mutex &mut);
 };
 #endif

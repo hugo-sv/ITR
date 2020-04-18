@@ -38,7 +38,7 @@ int main(void)
     {
         cout << "3 - Testing concurrency" << endl;
         int total = 1000000;
-        int total_incrementers = 3;
+        int total_incrementers = 10;
         cout << total_incrementers << " threads will count from 0 to " << total << ".\n";
         cout << "Expected result : " << total * total_incrementers << ".\n";
         volatile int sum = 0;
