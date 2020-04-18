@@ -7,7 +7,7 @@ Les classes `Thread` et `PosixThread` sont implémentés dans les fichiers `src/
 Le script `src/td4/a.cpp` Teste ces implementations en 3 tests en utilsant des Thread d'incrementation de compteur (`src/td4/AIncrementer.cpp`) jusqu'à 100 000 000:
 - 1 : Test des mesure de temps d'exceution, de la méthode `join` et `sleep`.
 - 2 : Test de la méthode `join` avec timeout : La premiere tentative echoue, tandis que la seconde join le thread avant le timeout.
-- 3 : test de la concurrence : Trois thread concurents sont lancé, la valeur finale du compteur n'est pas celle attendue.
+- 3 : test de la concurrence : Dix threads concurents sont lancés, la valeur finale du compteur n'est pas celle attendue.
 
 Ce script peut être exécuté avec la commande `build/td4_a.out`.
 
