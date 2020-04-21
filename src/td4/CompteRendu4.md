@@ -15,9 +15,11 @@ Ce script peut être exécuté avec la commande `build/td4_a.out`.
 
 Les classes `Mutex`, `Mutex::Monitor`, `Mutex::Lock` et `Mutex::TryLock` sont implémentées dans le fichier `src/td4/Mutex.cpp`.
 
-Le compteur avec accès protégé par Mutex est implémenté dans le fichier `src/td4/BIncrementer.cpp`. Son fonctionnement est testé avec le fichier `src/td4/b.cpp` : trois compteurs protégés sont lancés en parallèle.
+Le compteur avec accès protégé par Mutex est implémenté dans le fichier `src/td4/BIncrementer.cpp`. Son fonctionnement est testé dans le premier test du script `src/td4/b.cpp`, où trois compteurs protégés sont lancés en parallèle.
 
 On observe que le compte est bon, mais que la vitesse d'execution est moindre comparée au test 3 de la partie a.
+
+La classe `Thread` est aussi complétée du champs booléen `started`, testé dans le second test du script, où l'on tente à deux reprise d'exécuter la méthode `start()` sur un thread actif. 
 
 Ce script peut être exécuté avec la commande `build/td4_b.out`.
 
