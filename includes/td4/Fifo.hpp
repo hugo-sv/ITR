@@ -19,6 +19,7 @@ public:
     void push(T element);
     T pop();
     T pop(double timeout_ms);
+    bool empty();
 };
 
 template <class T>
@@ -68,6 +69,12 @@ T Fifo<T>::pop(double timeout_ms)
     {
         throw EmptyException();
     }
+}
+
+template <class T>
+bool Fifo<T>::empty()
+{
+    return this->elements.empty();
 }
 
 #endif

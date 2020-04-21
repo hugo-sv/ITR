@@ -37,6 +37,14 @@ Ce script peut être exécuté avec la commande `build/td4_c.out`.
 
 ## c) Classe Fifo multitâches
 
-@ Todo
+La classe `Fifo` est entierement implémentée dans le fichier `includes/td4/Fifo.hpp`.
+
+Pour tester cette classe, le script `src/td4/d.cpp` utilise la classe `Cproducer`, implémentée dans le script `src/td4/Cproducer.cpp`.
+
+Ce producer consomme une tache de la Fifo (un entier `n` strictement positif), attend 10 ms, puis produit deux taches : `n-1` et `n-2`, tant qu'ils sont strictement supérieurs à 0. Ce dernier consomme indéfiniement les éléments de la Fifo, a moins que son timeout ne soit atteint.
+
+Dans notre exemple, la Fifo est initialisé avec les entiers `5`, `4`, `3`, `2` et `1`, et deux `Cproducer` sont crées, puis mis en route pour consommer la Fifo.
+
+Une fois les timeout des deux taches atteints, on vérifie que toutes les tahces (initialeemnt entrée, mais aussi produites) ont bien étée consommées, et que le Fifo est bien vide.
 
 Ce script peut être exécuté avec la commande `build/td4_d.out`.

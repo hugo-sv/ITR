@@ -1,30 +1,25 @@
 #include <iostream>
 #include "td4/Fifo.hpp"
-#include "FifoProducer.h"
+#include "DProducer.h"
 using namespace std;
 
 int main(void)
 {
-    /*
-    Testez la classe en y accédant de manière concurrente par de multiples tâches productrices et consommatrices. 
-    Pour cela, utilisez une fifo de nombres entiers Fifo<int> et faites produire par chaque tâche productrice une série d’entiers de 0 à n. 
-    Mettez en place un mécanisme pour vérifier que tous les entiers produits par les tâches productrices ont bien été reçus par les tâches consommatrices.
-    */
     int nProd = 5;
     int nCons = 2;
+    double producersTimeout = 500;
     Fifo<int> f = Fifo<int>();
-    // Creation du Producers
-    std::vector<FifoProducer> producers;
-    for (int i = 0; i < nCons; i++)
-    {
-        producers.push_back(FifoProducer(f, i, 5000));
-    }
     // Adding tasks
     for (int i = 0; i < nProd; i++)
     {
         f.push(nProd - i);
     }
-    timespec start_time = timespec_now();
+    // Creating Producers
+    std::vector<DProducer> producers;
+    for (int i = 0; i < nCons; i++)
+    {
+        producers.push_back(DProducer(f, i, producersTimeout));
+    }
     // Starting jobs
     for (auto &&producer : producers)
     {
@@ -36,8 +31,14 @@ int main(void)
     {
         producer.join();
     }
-    cout << "Taches réalisées en " << timespec_to_ms(timespec_now() - start_time) << " ms\n";
-    // TODO Vérifier que tous les entiers produits par les tâches productrices ont bien été reçus par les tâches consommatrices.
-
+    // Check if Fifo is empty, and all task have been consummed.
+    if (f.empty())
+    {
+        cout << "Fifo is empty, all tasks have been consummed." << endl;
+    }
+    else
+    {
+        cout << "Fifo is not empty, There are remaining tasks to consume." << endl;
+    }
     return 0;
 }
