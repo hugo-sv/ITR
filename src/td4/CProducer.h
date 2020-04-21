@@ -1,10 +1,10 @@
-#ifndef SemaProducer_h_INCLUDED
-#define SemaProducer_h_INCLUDED
+#ifndef CProducer_h_INCLUDED
+#define CProducer_h_INCLUDED
 #include "td4/Thread.h"
 #include "td4/Semaphore.h"
 using namespace std;
 
-class SemaProducer : public Thread
+class CProducer : public Thread
 {
 private:
     int id;
@@ -12,6 +12,6 @@ private:
     Semaphore &s;
 
 public:
-    SemaProducer(Semaphore &s, int id);
+    CProducer(Semaphore &s, int id);
 };
 #endif

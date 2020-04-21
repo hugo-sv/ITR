@@ -25,7 +25,13 @@ Ce script peut être exécuté avec la commande `build/td4_b.out`.
 
 ## c) Classe Semaphore
 
-@ Todo
+La classe `Semaphore` est implémentée dans le fichier `src/td4/Semaphore.cpp`.
+
+Dans le script `src/td4/c.cpp`, un sémaphore est partagé par des tâches à la fois consommatrices et productrices, implémentées dans le fichier `src/td4/CProducer.cpp`.
+
+Cette tâche prend un jeton, attend 100 ms, puis donne un jeton au sémaphore.
+Avec 10 taches consomatrices, et un sémaphore initialisé à 5 jetons, on vérifie avec le script bien une execution en 200ms.
+Les prises et rendus de jetons sont aussi affichés.
 
 Ce script peut être exécuté avec la commande `build/td4_c.out`.
 
