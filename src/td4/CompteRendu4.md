@@ -10,7 +10,7 @@ Les exécutables de chaque sous-questions seront dans le dossier `./build`.
 
 Les classes `Thread` et `PosixThread` sont implémentés dans les fichiers `src/td4/Thread.cpp` et `src/td4/PosixThread.cpp`.
 
-Le script `src/td4/a.cpp` Teste ces implementations en 3 tests en utilsant des Thread d'incrementation de compteur (`src/td4/AIncrementer.cpp`) jusqu'à 100 000 000:
+Le script `src/td4/main_td4a.cpp` Teste ces implementations en 3 tests en utilsant des Thread d'incrementation de compteur (`src/td4/AIncrementer.cpp`) jusqu'à 100 000 000:
 - 1 : Test des mesure de temps d'exceution, de la méthode `join` et `sleep`.
 - 2 : Test de la méthode `join` avec timeout : La premiere tentative echoue, tandis que la seconde join le thread avant le timeout.
 - 3 : test de la concurrence : Dix threads concurents sont lancés, la valeur finale du compteur n'est pas celle attendue.
@@ -21,7 +21,7 @@ Ce script peut être exécuté avec la commande `build/td4_a.out`.
 
 Les classes `Mutex`, `Mutex::Monitor`, `Mutex::Lock` et `Mutex::TryLock` sont implémentées dans le fichier `src/td4/Mutex.cpp`.
 
-Le compteur avec accès protégé par Mutex est implémenté dans le fichier `src/td4/BIncrementer.cpp`. Son fonctionnement est testé dans le premier test du script `src/td4/b.cpp`, où trois compteurs protégés sont lancés en parallèle.
+Le compteur avec accès protégé par Mutex est implémenté dans le fichier `src/td4/BIncrementer.cpp`. Son fonctionnement est testé dans le premier test du script `src/td4/main_td4b.cpp`, où trois compteurs protégés sont lancés en parallèle.
 
 On observe que le compte est bon, mais que la vitesse d'execution est moindre comparée au test 3 de la partie a.
 
@@ -33,7 +33,7 @@ Ce script peut être exécuté avec la commande `build/td4_b.out`.
 
 La classe `Semaphore` est implémentée dans le fichier `src/td4/Semaphore.cpp`.
 
-Dans le script `src/td4/c.cpp`, un sémaphore est partagé par des tâches à la fois consommatrices et productrices, implémentées dans le fichier `src/td4/CProducer.cpp`.
+Dans le script `src/td4/main_td4c.cpp`, un sémaphore est partagé par des tâches à la fois consommatrices et productrices, implémentées dans le fichier `src/td4/CProducer.cpp`.
 
 Cette tâche prend un jeton, attend 100 ms, puis donne un jeton au sémaphore.
 Avec 10 taches consomatrices, et un sémaphore initialisé à 5 jetons, on vérifie avec le script bien une execution en 200ms.
@@ -45,7 +45,7 @@ Ce script peut être exécuté avec la commande `build/td4_c.out`.
 
 La classe `Fifo` est entierement implémentée dans le fichier `src/td4/Fifo.hpp`.
 
-Pour tester cette classe, le script `src/td4/d.cpp` utilise la classe `Cproducer`, implémentée dans le script `src/td4/Cproducer.cpp`.
+Pour tester cette classe, le script `src/td4/main_td4d.cpp` utilise la classe `Cproducer`, implémentée dans le script `src/td4/Cproducer.cpp`.
 
 Ce producer consomme une tache de la Fifo (un entier `n` strictement positif), attend 10 ms, puis produit deux taches : `n-1` et `n-2`, tant qu'ils sont strictement supérieurs à 0. Ce dernier consomme indéfiniement les éléments de la Fifo, a moins que son timeout ne soit atteint.
 
