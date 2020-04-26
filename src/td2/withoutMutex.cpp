@@ -16,11 +16,11 @@ struct Data
     double *pCounter;
 };
 
-void *call_inc(void *v_data)
+void *call_inc(void *data)
 {
-    Data *p_data = (Data *)v_data;
-    incr(p_data->nLoops, p_data->pCounter);
-    return v_data;
+    Data *pData = (Data *)data;
+    incr(pData->nLoops, pData->pCounter);
+    return data;
 };
 
 int main(int argc, char *argv[])
@@ -36,11 +36,11 @@ int main(int argc, char *argv[])
         nTasks = strtoul(argv[2], nullptr, 10);
     }
     double counter = 0.0;
-    struct timespec tp, exec_time;
+    struct timespec start_ts, exec_ts;
 
     Data data = {nLoops, &counter};
     pthread_t incrementThread[nTasks];
-    tp = timespec_now();
+    start_ts = timespec_now();
     for (unsigned int i = 0; i < nTasks; i++)
     {
         // Starting threads
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     for (unsigned int i = 0; i < nTasks; ++i)
         pthread_join(incrementThread[i], nullptr);
     // timespec_now() uses the Posix clock_gettime function
-    exec_time = (timespec_now() - tp);
-    cout << "Execution time (s) : " << timespec_to_ms(exec_time) / 1000 << "\n";
+    exec_ts = (timespec_now() - start_ts);
+    cout << "Execution time (s) : " << timespec_to_ms(exec_ts) / 1000 << "\n";
     cout << "Counter's value (s) : " << counter << "\n";
 }

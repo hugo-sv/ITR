@@ -19,7 +19,7 @@ void incr(unsigned int nLoops, double *pCounter)
     }
 }
 
-void incr_mutex(unsigned int nLoops, double *pCounter, pthread_mutex_t *mutex)
+void incrMutex(unsigned int nLoops, double *pCounter, pthread_mutex_t *mutex)
 {
     for (unsigned int i = 0; i < nLoops; i++)
     {
@@ -29,24 +29,24 @@ void incr_mutex(unsigned int nLoops, double *pCounter, pthread_mutex_t *mutex)
     }
 }
 
-void *call_inc(void *v_data)
+void *call_inc(void *data)
 {
-    Data *p_data = (Data *)v_data;
-    if (p_data->mutexEnabled)
+    Data *pData = (Data *)data;
+    if (pData->mutexEnabled)
     {
-        incr_mutex(p_data->nLoops, p_data->pCounter, &(p_data->mutex));
+        incrMutex(pData->nLoops, pData->pCounter, &(pData->mutex));
     }
     else
     {
-        incr(p_data->nLoops, p_data->pCounter);
+        incr(pData->nLoops, pData->pCounter);
     }
-    return v_data;
+    return data;
 };
 
 tuple<double, double> getExecutionTime(unsigned int nLoops, unsigned int nTasks, int ord, bool mutexEnabled)
 {
     double counter = 0.0;
-    struct timespec tp, exec_time;
+    struct timespec start_ts, exec_ts;
 
     // Parameters for main and tasks
     struct sched_param schedParam, schedParams;
@@ -80,7 +80,7 @@ tuple<double, double> getExecutionTime(unsigned int nLoops, unsigned int nTasks,
     Data data = {nLoops, &counter, mutexEnabled, pthread_mutex_t()};
     pthread_mutex_init(&data.mutex, nullptr);
     pthread_t incrementThread[nTasks];
-    tp = timespec_now();
+    start_ts = timespec_now();
     for (unsigned int i = 0; i < nTasks; i++)
     {
         // Starting threads
@@ -93,8 +93,8 @@ tuple<double, double> getExecutionTime(unsigned int nLoops, unsigned int nTasks,
         pthread_join(incrementThread[i], nullptr);
     // timespec_now() uses the Posix clock_gettime function
     pthread_mutex_destroy(&data.mutex);
-    exec_time = (timespec_now() - tp);
-    return make_tuple(timespec_to_ms(exec_time), counter);
+    exec_ts = (timespec_now() - start_ts);
+    return make_tuple(timespec_to_ms(exec_ts), counter);
 }
 
 int main(int argc, char *argv[])
@@ -120,6 +120,6 @@ int main(int argc, char *argv[])
         mutexEnabled = (*argv[4] == '1');
     }
     tuple<double, double> t = getExecutionTime(nLoops, nTasks, ord, mutexEnabled);
-    cout << "Temps d'execution (s) : " << get<0>(t) / 1000 << "\n";
-    cout << "Valeur du compteur (s) : " << get<1>(t) << "\n";
+    cout << "Execution time (s) : " << get<0>(t) / 1000 << "\n";
+    cout << "Counter's value (s) : " << get<1>(t) << "\n";
 }
