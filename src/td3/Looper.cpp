@@ -1,8 +1,8 @@
 #include "Looper.h"
 
-double Looper::runLoop(double nLoops) //= __DBL_MAX__
+double Looper::runLoop(double nLoops)
 {
-    while (!doStop && iLoop < nLoops)
+    while(!doStop && iLoop < nLoops)
     {
         iLoop += 1.0;
     }
