@@ -1,5 +1,5 @@
-#ifndef Calibrator_h_INCLUDED
-#define Calibrator_h_INCLUDED
+#ifndef td3_Calibrator_h_INCLUDED
+#define td3_Calibrator_h_INCLUDED
 #include <iostream>
 #include <vector>
 #include "PeriodicTimer.h"
@@ -8,8 +8,12 @@
 using namespace td1;
 using namespace std;
 
+namespace td3
+{
+
 class Calibrator : public PeriodicTimer
 {
+    
 public:
     class CpuLoop;
 
@@ -37,4 +41,6 @@ public:
 private:
     Calibrator &calibrator;
 };
+
+}
 #endif

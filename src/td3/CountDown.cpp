@@ -1,4 +1,5 @@
 #include "CountDown.h"
+using namespace td3;
 
 CountDown::CountDown(int n) : countDown(n)
 {
@@ -7,13 +8,10 @@ CountDown::CountDown(int n) : countDown(n)
 void CountDown::callback()
 {
     this->countDown--;
+    cout << countDown << "\n";
     if (countDown == 0)
     {
         stop();
-    }
-    else
-    {
-        cout << countDown << "\n";
     }
 }
 

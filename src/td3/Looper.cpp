@@ -1,4 +1,5 @@
 #include "Looper.h"
+using namespace td3;
 
 double Looper::runLoop(double nLoops)
 {

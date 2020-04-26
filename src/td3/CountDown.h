@@ -1,9 +1,11 @@
-#ifndef CountDown_h_INCLUDED
-#define CountDown_h_INCLUDED
+#ifndef td3_CountDown_h_INCLUDED
+#define td3_CountDown_h_INCLUDED
 #include "PeriodicTimer.h"
 #include "Timer.h"
 using namespace std;
 
+namespace td3
+{
 class CountDown : public PeriodicTimer
 {
 private:
@@ -14,4 +16,7 @@ public:
     void callback();
     void start();
 };
+
+}
+
 #endif

@@ -1,4 +1,5 @@
 #include "PeriodicTimer.h"
+using namespace td3;
 
 PeriodicTimer::PeriodicTimer() : Timer() {}
 

@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "Chrono.h"
 using namespace std;
+using namespace td3;
 
 int main(void)
 {
