@@ -1,9 +1,12 @@
-#ifndef CrunchReq_h_INCLUDED
-#define CrunchReq_h_INCLUDED
+#ifndef td6_CrunchReq_h_INCLUDED
+#define td6_CrunchReq_h_INCLUDED
 #include "Request.h"
 #include "Calculator.h"
 
 using namespace std;
+
+namespace td6
+{
 
 class CrunchReq : public Request
 {
@@ -14,8 +17,9 @@ private:
 
 public:
     CrunchReq(Calculator *calc, double param);
-    // ~CrunchReq();
     void execute();
     double waitReturn();
 };
+
+} // namespace td6
 #endif

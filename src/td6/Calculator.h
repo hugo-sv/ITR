@@ -1,7 +1,11 @@
-#ifndef Calculator_h_INCLUDED
-#define Calculator_h_INCLUDED
+#ifndef td6_Calculator_h_INCLUDED
+#define td6_Calculator_h_INCLUDED
 #include "../td4/Thread.h"
 using namespace std;
+using namespace td4;
+
+namespace td6
+{
 
 class Calculator
 {
@@ -10,4 +14,5 @@ public:
     Calculator();
     double crunch(double param);
 };
+} // namespace td6
 #endif

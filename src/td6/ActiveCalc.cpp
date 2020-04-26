@@ -1,5 +1,8 @@
 #include "ActiveCalc.h"
 
+namespace td6
+{
+
 ActiveCalc::ActiveCalc()
 {
     this->calc = new Calculator();
@@ -15,4 +18,6 @@ CrunchReq *ActiveCalc::async_crunch(double param)
     CrunchReq *req = new CrunchReq(this->calc, param);
     this->ActiveObject::reqFifo.push(req);
     return req;
+}
+
 }

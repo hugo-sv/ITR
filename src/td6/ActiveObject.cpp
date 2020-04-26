@@ -1,5 +1,8 @@
 #include "ActiveObject.h"
 
+namespace td6
+{
+
 ActiveObject::ActiveObject()
 {
     this->reqFifo = Fifo<Request *>();
@@ -12,4 +15,6 @@ void ActiveObject::run()
         Request *req = this->reqFifo.pop();
         req->execute();
     }
+}
+
 }

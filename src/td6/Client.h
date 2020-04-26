@@ -1,9 +1,13 @@
-#ifndef Client_h_INCLUDED
-#define Client_h_INCLUDED
+#ifndef td6_Client_h_INCLUDED
+#define td6_Client_h_INCLUDED
 #include "../td4/Thread.h"
 #include "ActiveCalc.h"
 
 using namespace std;
+using namespace td4;
+
+namespace td6
+{
 
 class Client : public Thread
 {
@@ -17,4 +21,6 @@ protected:
 public:
     Client(double crunchSeed, ActiveCalc *acalc);
 };
+
+} // namespace td6
 #endif

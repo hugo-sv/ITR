@@ -4,6 +4,7 @@
 #include "ActiveCalc.h"
 #include "Client.h"
 using namespace std;
+using namespace td6;
 
 int main(void)
 {
@@ -19,7 +20,7 @@ int main(void)
     }
 
     // Starting calculator and clients
-    timespec start_time = timespec_now();
+    timespec start_ts = timespec_now();
     acalc.start();
 
     for (auto &client : clients)
@@ -33,13 +34,13 @@ int main(void)
     {
         client->join();
     }
-    double duration = timespec_to_ms(timespec_now() - start_time);
-    if (duration < 5100)
+    double duration_ms = timespec_to_ms(timespec_now() - start_ts);
+    if (duration_ms < 5100)
     {
-        cout << "All jobs have been processed within " << duration << " ms." << endl;
+        cout << "All jobs have been processed within " << duration_ms << " ms." << endl;
     }
     else
     {
-        cout << "Overall processing time exceeded 5100 ms : " << duration << " ms." << endl;
+        cout << "Overall processing time exceeded 5100 ms : " << duration_ms << " ms." << endl;
     }
 }

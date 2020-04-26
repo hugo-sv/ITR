@@ -1,8 +1,9 @@
 #include "CrunchReq.h"
 
-CrunchReq::CrunchReq(Calculator *calc, double param) : calc(calc), param(param) {}
+namespace td6
+{
 
-// CrunchReq::~CrunchReq() {}
+CrunchReq::CrunchReq(Calculator *calc, double param) : calc(calc), param(param) {}
 
 double CrunchReq::waitReturn()
 {
@@ -14,4 +15,6 @@ void CrunchReq::execute()
 {
     result = calc->crunch(param);
     this->returnSema.give();
+}
+
 }
