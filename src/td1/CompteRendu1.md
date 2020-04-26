@@ -10,7 +10,7 @@ Les exécutables de chaque sous-questions seront dans le dossier `./build`.
 
 Les fonctions sont implémentées dans le fichier `posixHelpers.cpp`.
 
-Elles sont testées dans le main du fichier `posixHelpers.test.cpp`.
+Elles sont testées dans le main du fichier `main_td1a.cpp`.
 
 Exécuter `build/td1_a.out` pour faire les tests.
 
@@ -18,13 +18,13 @@ Exécuter `build/td1_a.out` pour faire les tests.
 
 Une fonction générique de timer est implémentée dans le fichier `posixTimer.cpp`.
 
-Elle peut etre testée dans le main du fichier `posixTimer.test.cpp`.
+Elle peut etre testée dans le main du fichier `main_td1b.cpp`.
 
 Exécuter `build/td1_b.out` pour tester la fonction.
 
 ## c) Fonction simple consommant du CPU
 
-La fonction de l'incrément et le test sont implementés dans le fichier `IncrC.cpp`.
+La fonction de l'incrément et le test sont implementés dans le fichier `main_td1c.cpp`.
 
 Pour la tester, il faut l'executer avec la commande suivante : 
 ```build/td1_c.out 10000000```
@@ -33,7 +33,7 @@ Pour la tester, il faut l'executer avec la commande suivante :
 
 Il faut déclarer pStop comme `volatile bool` pour que le compilateur ne fasse pas de suppositions sur sa valeur.
 
-Dans le fichier `mesureExecution.cpp`, la mesure du temps d'execution est effectuée, des parametres sont calculées et vérifiés.
+Dans le fichier `main_td1d.cpp`, la mesure du temps d'execution est effectuée, des parametres sont calculées et vérifiés.
 
 L'objet Timer de la question b est réutilisé.
 
