@@ -3,6 +3,7 @@
 #include "Calibrator.h"
 #include "Looper.h"
 using namespace std;
+using namespace td3;
 
 int main(void)
 {

@@ -1,4 +1,6 @@
 #include "Timer.h"
+using namespace td3;
+
 Timer::Timer()
 {
     struct sigaction sa;

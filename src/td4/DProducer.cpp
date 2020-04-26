@@ -1,4 +1,5 @@
 #include "DProducer.h"
+using namespace td4;
 
 DProducer::DProducer(Fifo<int> &f, int id, double timeout_ms) : Thread(), id(id), f(f), timeout_ms(timeout_ms) {}
 

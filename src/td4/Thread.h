@@ -1,7 +1,10 @@
-#ifndef Thread_h_INCLUDED
-#define Thread_h_INCLUDED
+#ifndef td4_Thread_h_INCLUDED
+#define td4_Thread_h_INCLUDED
 #include "PosixThread.h"
 using namespace std;
+
+namespace td4
+{
 
 class Thread : public PosixThread
 {
@@ -23,4 +26,6 @@ public:
     double stopTime_ms();
     double execTime_ms();
 };
+
+}
 #endif

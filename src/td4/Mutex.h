@@ -1,11 +1,14 @@
-#ifndef Mutex_h_INCLUDED
-#define Mutex_h_INCLUDED
+#ifndef td4_Mutex_h_INCLUDED
+#define td4_Mutex_h_INCLUDED
 #include <iostream>
 #include <pthread.h>
 #include <exception>
 #include "../td1/posixHelpers.h"
 using namespace td1;
 using namespace std;
+
+namespace td4
+{
 
 class Mutex
 {
@@ -67,4 +70,5 @@ public:
     ~TryLock();
 };
 
+}
 #endif

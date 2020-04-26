@@ -1,4 +1,5 @@
 #include "AIncrementer.h"
+using namespace td4;
 
 AIncrementer::AIncrementer(void *data, int count) : Thread(), data(data), count(count) {}
 

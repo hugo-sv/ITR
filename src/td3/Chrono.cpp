@@ -1,4 +1,6 @@
 #include "Chrono.h"
+using namespace td3;
+
 Chrono::Chrono()
 {
     this->startTime_ = timespec_now();

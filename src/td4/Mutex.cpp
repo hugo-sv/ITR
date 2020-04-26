@@ -1,4 +1,5 @@
 #include "Mutex.h"
+using namespace td4;
 
 Mutex::Mutex()
 {

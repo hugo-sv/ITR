@@ -1,5 +1,6 @@
 #include "Calibrator.h"
 using namespace std;
+using namespace td3;
 
 Calibrator::Calibrator(double samplingPeriod, unsigned nSamples) : nSamples(nSamples)
 {

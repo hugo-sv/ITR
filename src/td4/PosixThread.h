@@ -1,10 +1,13 @@
-#ifndef PosixThread_h_INCLUDED
-#define PosixThread_h_INCLUDED
+#ifndef td4_PosixThread_h_INCLUDED
+#define td4_PosixThread_h_INCLUDED
 #include <iostream>
 #include <pthread.h>
 #include "../td1/posixHelpers.h"
 using namespace td1;
 using namespace std;
+
+namespace td4
+{
 
 class PosixThread
 {
@@ -28,4 +31,6 @@ public:
     bool setScheduling(int schedPolicy, int priority);
     bool getScheduling(int *p_schedPolicy = nullptr, int *p_priority = nullptr);
 };
+
+}
 #endif

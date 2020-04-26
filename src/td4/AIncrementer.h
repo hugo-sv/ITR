@@ -1,7 +1,10 @@
-#ifndef AIncrementer_h_INCLUDED
-#define AIncrementer_h_INCLUDED
+#ifndef td4_AIncrementer_h_INCLUDED
+#define td4_AIncrementer_h_INCLUDED
 #include "Thread.h"
 using namespace std;
+
+namespace td4
+{
 
 class AIncrementer : public Thread
 {
@@ -13,4 +16,7 @@ private:
 public:
     AIncrementer(void *data, int count);
 };
+
+}
+
 #endif
