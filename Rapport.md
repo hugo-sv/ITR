@@ -13,7 +13,7 @@ Les exécutables de chaque sous-questions seront dans le dossier `./build`.
 
 Les fonctions sont implémentées dans le fichier `posixHelpers.cpp`.
 
-Elles sont testées dans le main du fichier `posixHelpers.test.cpp`.
+Elles sont testées dans le main du fichier `main_td1a.cpp`.
 
 Exécuter `build/td1_a.out` pour faire les tests.
 
@@ -21,13 +21,13 @@ Exécuter `build/td1_a.out` pour faire les tests.
 
 Une fonction générique de timer est implémentée dans le fichier `posixTimer.cpp`.
 
-Elle peut etre testée dans le main du fichier `posixTimer.test.cpp`.
+Elle peut etre testée dans le main du fichier `main_td1b.cpp`.
 
 Exécuter `build/td1_b.out` pour tester la fonction.
 
 ## c) Fonction simple consommant du CPU
 
-La fonction de l'incrément et le test sont implementés dans le fichier `IncrC.cpp`.
+La fonction de l'incrément et le test sont implementés dans le fichier `main_td1c.cpp`.
 
 Pour la tester, il faut l'executer avec la commande suivante : 
 ```build/td1_c.out 10000000```
@@ -36,7 +36,7 @@ Pour la tester, il faut l'executer avec la commande suivante :
 
 Il faut déclarer pStop comme `volatile bool` pour que le compilateur ne fasse pas de suppositions sur sa valeur.
 
-Dans le fichier `mesureExecution.cpp`, la mesure du temps d'execution est effectuée, des parametres sont calculées et vérifiés.
+Dans le fichier `main_td1d.cpp`, la mesure du temps d'execution est effectuée, des parametres sont calculées et vérifiés.
 
 L'objet Timer de la question b est réutilisé.
 
@@ -66,7 +66,7 @@ Les exécutables de chaque sous-questions seront dans le dossier `./build`.
 
 ## a) Exécution sur plusieurs tâches sans mutex
 
-Cette exécution est implémentée dans le fichier `withoutMutex.cpp`.
+Cette exécution est implémentée dans le fichier `main_td2a.cpp`.
 
 Il faut ajouter `-pthread` lors de la compilation (géré dans le makefile du projet).
 
@@ -76,7 +76,7 @@ L'opération d'incrémentation n'etant pas atomique, elles peuvent rentrer en co
 
 ## b) Mesure de temps d’exécution
 
-Cette exécution est implémentée dans le fichier `withPolicy.cpp`.
+Cette exécution est implémentée dans le fichier `main_td2b.cpp`.
 
 On observe que, environ une fois sur deux, le total du compteur est soit égal à `nLoops`, soit égal à `nLoops * nTasks`.
 
@@ -88,7 +88,7 @@ En tracant les temps d'execution, on obtient le graphique suivant :
 
 ## c) Exécution sur plusieurs tâches avec mutex
 
-Cette exécution est implémentée dans le fichier `withMutex.cpp`.
+Cette exécution est implémentée dans le fichier `main_td2c.cpp`.
 
 Avec les mutex, le programme est bien plus lent (et d'autant plus lent qu'il y a de taches), mais la valeur finale du compteur est fiable.
 
@@ -100,7 +100,7 @@ Pour la tester, exécuter `build/td2_c.out nLoops nTasks schedPolicy protected`.
 
 ## a) Classe Chrono
 
-Le chronomètre est implémenté dans le fichier `Chrono.cpp` et testé dans le fichier `a.cpp`.
+Le chronomètre est implémenté dans le fichier `Chrono.cpp` et testé dans le fichier `main_td3a.cpp`.
 Dans ce second fichier, nous testons les fonctions stop, restart et lap, et vérifions que la différence entre la valeur attendue par timespec_wait etla valeur mesurée par le chronomètre ne dépasse pas 5 millisecondes (pour prendre en compte le délai d'exécution entre les instructions)
 
 ## b) Classe Timer
@@ -116,8 +116,8 @@ La méthode `start`doit également être virtuelle afin de pouvoir être surchar
 
 ## c) Calibration en temps d'une boucle
 
-Le calibrateur est implémenté dans les fichiers `Calibrator.cpp` et `Looper.cpp`, et testé grâce à `c.cpp`.
-La calibration est effectuée sur 1000 mesures, effectuées toutes les millisecondes. 
+Le calibrateur est implémenté dans les fichiers `Calibrator.cpp` et `Looper.cpp`, et testé grâce à `main_td3c.cpp`.
+La calibration est effectuée sur 1000 mesures, effectuées toutes les millisecondes. Le paramètre a est calculé en prenant la moyenne des paramètres calculés par approximation linéaire sur deux points consécutifs. Le paramètre b est alors calculé en prenant la moyenne de la différence entre chaque mesure et a fois le delta temporel, soit `(j+1)*période` pour la mesure d'indice j (j étant initialisé à 0).
 On constate un décalage de plusieurs centaines de millisecondes entre le temps prévu pour les tests (4 et 6 secondes), et le temps réellement nécessaire pour effectuer le nombre de boucles calculé grâce aux valeurs calibrées.
 
 \pagebreak
@@ -134,7 +134,7 @@ Les exécutables de chaque sous-questions seront dans le dossier `./build`.
 
 Les classes `Thread` et `PosixThread` sont implémentés dans les fichiers `src/td4/Thread.cpp` et `src/td4/PosixThread.cpp`.
 
-Le script `src/td4/a.cpp` Teste ces implementations en 3 tests en utilsant des Thread d'incrementation de compteur (`src/td4/AIncrementer.cpp`) jusqu'à 100 000 000:
+Le script `src/td4/main_td4a.cpp` Teste ces implementations en 3 tests en utilsant des Thread d'incrementation de compteur (`src/td4/AIncrementer.cpp`) jusqu'à 100 000 000:
 - 1 : Test des mesure de temps d'exceution, de la méthode `join` et `sleep`.
 - 2 : Test de la méthode `join` avec timeout : La premiere tentative echoue, tandis que la seconde join le thread avant le timeout.
 - 3 : test de la concurrence : Dix threads concurents sont lancés, la valeur finale du compteur n'est pas celle attendue.
@@ -145,7 +145,7 @@ Ce script peut être exécuté avec la commande `build/td4_a.out`.
 
 Les classes `Mutex`, `Mutex::Monitor`, `Mutex::Lock` et `Mutex::TryLock` sont implémentées dans le fichier `src/td4/Mutex.cpp`.
 
-Le compteur avec accès protégé par Mutex est implémenté dans le fichier `src/td4/BIncrementer.cpp`. Son fonctionnement est testé dans le premier test du script `src/td4/b.cpp`, où trois compteurs protégés sont lancés en parallèle.
+Le compteur avec accès protégé par Mutex est implémenté dans le fichier `src/td4/BIncrementer.cpp`. Son fonctionnement est testé dans le premier test du script `src/td4/main_td4b.cpp`, où trois compteurs protégés sont lancés en parallèle.
 
 On observe que le compte est bon, mais que la vitesse d'execution est moindre comparée au test 3 de la partie a.
 
@@ -157,7 +157,7 @@ Ce script peut être exécuté avec la commande `build/td4_b.out`.
 
 La classe `Semaphore` est implémentée dans le fichier `src/td4/Semaphore.cpp`.
 
-Dans le script `src/td4/c.cpp`, un sémaphore est partagé par des tâches à la fois consommatrices et productrices, implémentées dans le fichier `src/td4/CProducer.cpp`.
+Dans le script `src/td4/main_td4c.cpp`, un sémaphore est partagé par des tâches à la fois consommatrices et productrices, implémentées dans le fichier `src/td4/CProducer.cpp`.
 
 Cette tâche prend un jeton, attend 100 ms, puis donne un jeton au sémaphore.
 Avec 10 taches consomatrices, et un sémaphore initialisé à 5 jetons, on vérifie avec le script bien une execution en 200ms.
@@ -169,7 +169,7 @@ Ce script peut être exécuté avec la commande `build/td4_c.out`.
 
 La classe `Fifo` est entierement implémentée dans le fichier `src/td4/Fifo.hpp`.
 
-Pour tester cette classe, le script `src/td4/d.cpp` utilise la classe `Cproducer`, implémentée dans le script `src/td4/Cproducer.cpp`.
+Pour tester cette classe, le script `src/td4/main_td4d.cpp` utilise la classe `Cproducer`, implémentée dans le script `src/td4/Cproducer.cpp`.
 
 Ce producer consomme une tache de la Fifo (un entier `n` strictement positif), attend 10 ms, puis produit deux taches : `n-1` et `n-2`, tant qu'ils sont strictement supérieurs à 0. Ce dernier consomme indéfiniement les éléments de la Fifo, a moins que son timeout ne soit atteint.
 
