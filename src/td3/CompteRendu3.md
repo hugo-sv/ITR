@@ -2,7 +2,7 @@
 
 ## a) Classe Chrono
 
-Le chronomètre est implémenté dans le fichier `Chrono.cpp` et testé dans le fichier `a.cpp`.
+Le chronomètre est implémenté dans le fichier `Chrono.cpp` et testé dans le fichier `main_td3a.cpp`.
 Dans ce second fichier, nous testons les fonctions stop, restart et lap, et vérifions que la différence entre la valeur attendue par timespec_wait etla valeur mesurée par le chronomètre ne dépasse pas 5 millisecondes (pour prendre en compte le délai d'exécution entre les instructions)
 
 ## b) Classe Timer
@@ -18,6 +18,6 @@ La méthode `start`doit également être virtuelle afin de pouvoir être surchar
 
 ## c) Calibration en temps d'une boucle
 
-Le calibrateur est implémenté dans les fichiers `Calibrator.cpp` et `Looper.cpp`, et testé grâce à `c.cpp`.
+Le calibrateur est implémenté dans les fichiers `Calibrator.cpp` et `Looper.cpp`, et testé grâce à `main_td3c.cpp`.
 La calibration est effectuée sur 1000 mesures, effectuées toutes les millisecondes. 
 On constate un décalage de plusieurs centaines de millisecondes entre le temps prévu pour les tests (4 et 6 secondes), et le temps réellement nécessaire pour effectuer le nombre de boucles calculé grâce aux valeurs calibrées.

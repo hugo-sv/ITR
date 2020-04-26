@@ -17,10 +17,10 @@ td2: src/td1/posixHelpers.o src/td2/main_td2a.o src/td2/main_td2b.o src/td2/main
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_b.out src/td1/posixHelpers.o src/td2/main_td2b.o $(LDFLAGS)
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_c.out src/td1/posixHelpers.o src/td2/main_td2c.o $(LDFLAGS)
 
-td3: src/td1/posixHelpers.o src/td3/Chrono.o src/td3/Timer.o src/td3/PeriodicTimer.o src/td3/CountDown.o src/td3/Calibrator.o src/td3/Looper.o src/td3/a.o src/td3/b.o src/td3/c.o
-	$(CXX) $(CXXFLAGS) -o $(BUILD)/td3_a.out src/td1/posixHelpers.o src/td3/Chrono.o src/td3/a.o $(LDFLAGS)
-	$(CXX) $(CXXFLAGS) -o $(BUILD)/td3_b.out src/td1/posixHelpers.o src/td3/Timer.o src/td3/PeriodicTimer.o src/td3/CountDown.o src/td3/b.o $(LDFLAGS)
-	$(CXX) $(CXXFLAGS) -o $(BUILD)/td3_c.out src/td1/posixHelpers.o src/td3/Timer.o src/td3/PeriodicTimer.o src/td3/Calibrator.o src/td3/Looper.o src/td3/c.o $(LDFLAGS)
+td3: src/td1/posixHelpers.o src/td3/Chrono.o src/td3/Timer.o src/td3/PeriodicTimer.o src/td3/CountDown.o src/td3/Calibrator.o src/td3/Looper.o src/td3/main_td3a.o src/td3/main_td3b.o src/td3/main_td3c.o
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td3_a.out src/td1/posixHelpers.o src/td3/Chrono.o src/td3/main_td3a.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td3_b.out src/td1/posixHelpers.o src/td3/Timer.o src/td3/PeriodicTimer.o src/td3/CountDown.o src/td3/main_td3b.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td3_c.out src/td1/posixHelpers.o src/td3/Timer.o src/td3/PeriodicTimer.o src/td3/Calibrator.o src/td3/Looper.o src/td3/main_td3c.o $(LDFLAGS)
 
 td4: src/td1/posixHelpers.o src/td4/PosixThread.o src/td4/Thread.o src/td4/Mutex.o src/td4/AIncrementer.o src/td4/BIncrementer.o src/td4/Semaphore.o src/td4/CProducer.o src/td4/DProducer.o src/td4/a.o src/td4/b.o src/td4/c.o src/td4/d.o
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td4_a.out src/td1/posixHelpers.o src/td4/PosixThread.o src/td4/Thread.o src/td4/AIncrementer.o src/td4/a.o $(LDFLAGS)
