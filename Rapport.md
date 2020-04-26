@@ -101,7 +101,7 @@ Pour la tester, exécuter `build/td2_c.out nLoops nTasks schedPolicy protected`.
 ## a) Classe Chrono
 
 Le chronomètre est implémenté dans le fichier `Chrono.cpp` et testé dans le fichier `main_td3a.cpp`.
-Dans ce second fichier, nous testons les fonctions stop, restart et lap, et vérifions que la différence entre la valeur attendue par timespec_wait etla valeur mesurée par le chronomètre ne dépasse pas 5 millisecondes (pour prendre en compte le délai d'exécution entre les instructions)
+Dans ce second fichier, nous testons les fonctions stop, restart et lap, et vérifions que la différence entre la valeur attendue par timespec_wait et la valeur mesurée par le chronomètre ne dépasse pas 5 millisecondes (pour prendre en compte le délai d'exécution entre les instructions)
 
 ## b) Classe Timer
 
@@ -112,12 +112,12 @@ L'attribut de class `timer_t` et la méthode `callback` sont des éléments prot
 La méthode de class `call_callback` est privée, car elle ne fait qu'appeler la méthode `callback` après la fin du timer, et n'a donc pas de raison d'être modifiée ultérieurement. Son utilité est de permettre d'appeler callback depuis un timer posix : en effet, cette dernière est une méthode protégée, et le timer posix n'a pas le contrôle sur l'objet `Timer` qui l'a créé, et ne peut donc pas appeler directement la fonction `callback`
 
 La méthode callback est virtuelle pure : en effet, elle doit être implémentée de façon spécifique à chaque `Timer`.
-La méthode `start`doit également être virtuelle afin de pouvoir être surchargée pour faire le `PeriodicTimer`.
+La méthode `start` doit également être virtuelle afin de pouvoir être surchargée pour faire le `PeriodicTimer`.
 
 ## c) Calibration en temps d'une boucle
 
 Le calibrateur est implémenté dans les fichiers `Calibrator.cpp` et `Looper.cpp`, et testé grâce à `main_td3c.cpp`.
-La calibration est effectuée sur 1000 mesures, effectuées toutes les millisecondes. Le paramètre a est calculé en prenant la moyenne des paramètres calculés par approximation linéaire sur deux points consécutifs. Le paramètre b est alors calculé en prenant la moyenne de la différence entre chaque mesure et a fois le delta temporel, soit `(j+1)*période` pour la mesure d'indice j (j étant initialisé à 0).
+La calibration est effectuée sur 1000 mesures, effectuées toutes les millisecondes. Le paramètre a est calculé en prenant la moyenne des paramètres calculés par approximation linéaire sur deux points consécutifs. Le paramètre `b` est alors calculé en prenant la moyenne de la différence entre chaque mesure et `a` multiplié par le delta temporel, soit `(j+1)*période` pour la mesure d'indice j (j étant initialisé à 0).
 On constate un décalage de plusieurs centaines de millisecondes entre le temps prévu pour les tests (4 et 6 secondes), et le temps réellement nécessaire pour effectuer le nombre de boucles calculé grâce aux valeurs calibrées.
 
 \pagebreak
