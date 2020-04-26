@@ -6,9 +6,9 @@ using namespace std;
 int main(void)
 {
     CountDown t(40);
-    cout << "sjfhjhj\n";
+    cout << "Countdown started at 40\n";
     t.start();
-    timespec_wait(timespec_from_ms(3000));
+    timespec_wait(timespec_from_ms(41000));
     t.stop();
     return 0;
 }

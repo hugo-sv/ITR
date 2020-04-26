@@ -6,7 +6,7 @@ Cette exécution est implémentée dans le fichier `withoutMutex.cpp`.
 
 Il faut ajouter `-pthread` lors de la compilation (géré dans le makefile du projet).
 
-En excutant plusieurs fois `build/td2_a.out nLoops nTasks`, on observe plusieurs valeurs de compteurs, inférieurers à `nTasks * nLoops`.
+En excutant plusieurs fois `build/td2_a.out nLoops nTasks`, on observe plusieurs valeurs de compteurs, inférieures à `nTasks * nLoops`.
 
 L'opération d'incrémentation n'etant pas atomique, elles peuvent rentrer en conflit et des incrémentations sont perdues.
 
