@@ -19,5 +19,5 @@ void CountDown::callback()
 
 void CountDown::start()
 {
-    PeriodicTimer::start(500);
+    PeriodicTimer::start(1000);
 }
