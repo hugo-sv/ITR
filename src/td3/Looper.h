@@ -10,6 +10,6 @@ public:
 protected:
 private:
     volatile bool doStop;
-    double iLoop;
+    volatile double iLoop;
 };
 #endif

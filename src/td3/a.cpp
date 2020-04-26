@@ -1,6 +1,6 @@
 #include <iostream>
 #include <assert.h>
-#include "chrono.h"
+#include "Chrono.h"
 using namespace std;
 
 int main(void)
