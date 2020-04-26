@@ -8,7 +8,7 @@ Les exécutables de chaque sous-questions seront dans le dossier `./build`.
 
 ## a) Exécution sur plusieurs tâches sans mutex
 
-Cette exécution est implémentée dans le fichier `withoutMutex.cpp`.
+Cette exécution est implémentée dans le fichier `main_td2a.cpp`.
 
 Il faut ajouter `-pthread` lors de la compilation (géré dans le makefile du projet).
 
@@ -18,7 +18,7 @@ L'opération d'incrémentation n'etant pas atomique, elles peuvent rentrer en co
 
 ## b) Mesure de temps d’exécution
 
-Cette exécution est implémentée dans le fichier `withPolicy.cpp`.
+Cette exécution est implémentée dans le fichier `main_td2b.cpp`.
 
 On observe que, environ une fois sur deux, le total du compteur est soit égal à `nLoops`, soit égal à `nLoops * nTasks`.
 
@@ -30,7 +30,7 @@ En tracant les temps d'execution, on obtient le graphique suivant :
 
 ## c) Exécution sur plusieurs tâches avec mutex
 
-Cette exécution est implémentée dans le fichier `withMutex.cpp`.
+Cette exécution est implémentée dans le fichier `main_td2c.cpp`.
 
 Avec les mutex, le programme est bien plus lent (et d'autant plus lent qu'il y a de taches), mais la valeur finale du compteur est fiable.
 

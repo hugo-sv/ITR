@@ -12,10 +12,10 @@ td1: src/td1/posixHelpers.o src/td1/main_td1a.o src/td1/posixTimer.o src/td1/mai
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td1_c.out src/td1/posixHelpers.o src/td1/main_td1c.o $(LDFLAGS)
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td1_d.out src/td1/posixHelpers.o src/td1/main_td1d.o $(LDFLAGS)
 
-td2: src/td1/posixHelpers.o src/td2/withoutMutex.o src/td2/withPolicy.o src/td2/withMutex.o
-	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_a.out src/td1/posixHelpers.o src/td2/withoutMutex.o $(LDFLAGS)
-	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_b.out src/td1/posixHelpers.o src/td2/withPolicy.o $(LDFLAGS)
-	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_c.out src/td1/posixHelpers.o src/td2/withMutex.o $(LDFLAGS)
+td2: src/td1/posixHelpers.o src/td2/main_td2a.o src/td2/main_td2b.o src/td2/main_td2c.o
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_a.out src/td1/posixHelpers.o src/td2/main_td2a.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_b.out src/td1/posixHelpers.o src/td2/main_td2b.o $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td2_c.out src/td1/posixHelpers.o src/td2/main_td2c.o $(LDFLAGS)
 
 td3: src/td1/posixHelpers.o src/td3/Chrono.o src/td3/Timer.o src/td3/PeriodicTimer.o src/td3/CountDown.o src/td3/Calibrator.o src/td3/Looper.o src/td3/a.o src/td3/b.o src/td3/c.o
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td3_a.out src/td1/posixHelpers.o src/td3/Chrono.o src/td3/a.o $(LDFLAGS)
