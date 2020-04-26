@@ -2,6 +2,7 @@
 #include "Fifo.hpp"
 #include "DProducer.h"
 using namespace std;
+using namespace td4;
 
 int main(void)
 {

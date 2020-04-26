@@ -1,4 +1,5 @@
 #include "CProducer.h"
+using namespace td4;
 
 CProducer::CProducer(Semaphore &s, int id) : Thread(), id(id), s(s) {}
 

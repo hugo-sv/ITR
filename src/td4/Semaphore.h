@@ -1,7 +1,10 @@
-#ifndef Semaphore_h_INCLUDED
-#define Semaphore_h_INCLUDED
+#ifndef td4_Semaphore_h_INCLUDED
+#define td4_Semaphore_h_INCLUDED
 #include "Mutex.h"
 using namespace std;
+
+namespace td4
+{
 
 class Semaphore
 {
@@ -18,4 +21,6 @@ public:
     void take();
     bool take(double timeout_ms);
 };
+
+}
 #endif

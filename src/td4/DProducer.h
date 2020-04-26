@@ -1,8 +1,11 @@
-#ifndef DProducer_h_INCLUDED
-#define DProducer_h_INCLUDED
+#ifndef td4_DProducer_h_INCLUDED
+#define td4_DProducer_h_INCLUDED
 #include "Thread.h"
 #include "Fifo.hpp"
 using namespace std;
+
+namespace td4
+{
 
 class DProducer : public Thread
 {
@@ -15,4 +18,6 @@ private:
 public:
     DProducer(Fifo<int> &s, int id, double timeout_ms);
 };
+
+}
 #endif

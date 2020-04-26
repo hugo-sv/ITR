@@ -1,8 +1,11 @@
-#ifndef Fifo_hpp_INCLUDED
-#define Fifo_hpp_INCLUDED
+#ifndef td4_Fifo_hpp_INCLUDED
+#define td4_Fifo_hpp_INCLUDED
 #include "Mutex.h"
 #include <queue>
 using namespace std;
+
+namespace td4
+{
 
 template <class T>
 class Fifo
@@ -53,13 +56,13 @@ T Fifo<T>::pop()
 template <class T>
 T Fifo<T>::pop(double timeout_ms)
 {
-    timespec deadline = timespec_now() + timespec_from_ms(timeout_ms);
+    timespec deadline_ts = timespec_now() + timespec_from_ms(timeout_ms);
     Mutex::Lock l(this->m);
-    while (this->elements.empty() && deadline > timespec_now())
+    while (this->elements.empty() && deadline_ts > timespec_now())
     {
-        l.wait(timespec_to_ms(deadline - timespec_now()));
+        l.wait(timespec_to_ms(deadline_ts - timespec_now()));
     }
-    if (deadline > timespec_now())
+    if (deadline_ts > timespec_now())
     {
         T element = elements.front();
         this->elements.pop();
@@ -75,6 +78,8 @@ template <class T>
 bool Fifo<T>::empty()
 {
     return this->elements.empty();
+}
+
 }
 
 #endif
