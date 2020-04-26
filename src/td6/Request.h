@@ -1,6 +1,6 @@
 #ifndef Request_h_INCLUDED
 #define Request_h_INCLUDED
-#include "td4/Semaphore.h"
+#include "../td4/Semaphore.h"
 using namespace std;
 
 class Request

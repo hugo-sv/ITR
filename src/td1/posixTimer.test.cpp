@@ -1,5 +1,6 @@
 #include "posixTimer.cpp"
 using namespace std;
+using namespace td1;
 
 // sig is unused in this function
 void callback(int, siginfo_t *si, void *)
@@ -13,16 +14,16 @@ void callback(int, siginfo_t *si, void *)
 int main()
 {
     // Periodic Posix Timer with 2 Hz frequency
-    struct timespec value, interval;
+    struct timespec value_ts, interval_ts;
     // with 2 Hz frequency
-    value = timespec_from_ms(500);
-    interval = timespec_from_ms(500);
+    value_ts = timespec_from_ms(500);
+    interval_ts = timespec_from_ms(500);
     volatile int increment = 0;
-    timer_t tid = timer(callback, value, interval, (void *)&increment);
+    timer_t tid = timer(callback, value_ts, interval_ts, (void *)&increment);
     // The program must stops after 15 iterations
     while (increment < 15)
     {
     }
     timer_delete(tid);
-    cout << "The program stopped after 15 iterations\n";
+    cout << "The program stopped after 15 iterations.\n";
 }

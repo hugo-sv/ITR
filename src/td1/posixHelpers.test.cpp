@@ -1,54 +1,55 @@
-#include "td1/posixHelpers.h"
+#include "posixHelpers.h"
 #include <assert.h>
 #include <unistd.h>
 using namespace std;
+using namespace td1;
 
 int main()
 {
-    double ms = 3200;
-    struct timespec tp1, tp2, tp3, tp4, tp5, tp6, tp7;
+    double a_ms = 3200;
+    struct timespec a_ts, b_ts, c_ts, d_ts, e_ts, f_ts, g_ts;
 
-    tp1 = timespec_from_ms(ms);
-    tp2 = timespec_from_ms(-ms);
-    assert(abs(timespec_to_ms(tp1) + timespec_to_ms(tp2)) < 1);
+    a_ts = timespec_from_ms(a_ms);
+    b_ts = timespec_from_ms(-a_ms);
+    assert(abs(timespec_to_ms(a_ts) + timespec_to_ms(b_ts)) < 1);
     cout << "timespec_to_ms and timespec_from_ms tested\n";
 
-    assert(abs(timespec_to_ms(timespec_negate(tp1)) + timespec_to_ms(tp1)) < 1);
+    assert(abs(timespec_to_ms(timespec_negate(a_ts)) + timespec_to_ms(a_ts)) < 1);
     cout << "negate operator tested\n";
 
-    assert(abs(timespec_to_ms(-tp1) + timespec_to_ms(tp1)) < 1);
+    assert(abs(timespec_to_ms(-a_ts) + timespec_to_ms(a_ts)) < 1);
     cout << "negate - operator tested\n";
 
-    tp3 = timespec_now();
+    c_ts = timespec_now();
     sleep(1);
-    tp4 = timespec_now();
-    assert(timespec_to_ms(tp4) - timespec_to_ms(tp3) - 1000 < 10);
+    d_ts = timespec_now();
+    assert(timespec_to_ms(d_ts) - timespec_to_ms(c_ts) - 1000 < 10);
     cout << "timespec_now tested\n";
 
-    assert(abs(timespec_to_ms(tp4) + timespec_to_ms(tp3) - timespec_to_ms(timespec_add(tp4, tp3))) < 1);
+    assert(abs(timespec_to_ms(d_ts) + timespec_to_ms(c_ts) - timespec_to_ms(timespec_add(d_ts, c_ts))) < 1);
     cout << "add operator tested\n";
 
-    assert(timespec_to_ms(timespec_add(tp4, tp3)) == timespec_to_ms(tp4 + tp3));
+    assert(timespec_to_ms(timespec_add(d_ts, c_ts)) == timespec_to_ms(d_ts + c_ts));
     cout << "+ operators tested\n";
 
-    assert(abs(timespec_to_ms(tp4) - timespec_to_ms(tp3) - timespec_to_ms(timespec_substract(tp4, tp3))) < 1);
+    assert(abs(timespec_to_ms(d_ts) - timespec_to_ms(c_ts) - timespec_to_ms(timespec_substract(d_ts, c_ts))) < 1);
     cout << "substarct operator tested\n";
 
-    assert(timespec_to_ms(timespec_substract(tp4, tp3)) == timespec_to_ms(tp4 - tp3));
+    assert(timespec_to_ms(timespec_substract(d_ts, c_ts)) == timespec_to_ms(d_ts - c_ts));
     cout << "- operators tested\n";
 
-    tp5 = timespec_now();
-    tp6 = timespec_wait(timespec_from_ms(1000));
-    tp7 = timespec_now();
-    assert(timespec_to_ms(tp5) - timespec_to_ms(tp7) - 1000 < 10 && timespec_to_ms(tp6) == 0);
+    e_ts = timespec_now();
+    f_ts = timespec_wait(timespec_from_ms(1000));
+    g_ts = timespec_now();
+    assert(timespec_to_ms(e_ts) - timespec_to_ms(g_ts) - 1000 < 10 && timespec_to_ms(f_ts) == 0);
     cout << "timespec_wait tested\n";
 
-    tp1 += tp2;
-    assert(timespec_to_ms(tp1) == 0);
+    a_ts += b_ts;
+    assert(timespec_to_ms(a_ts) == 0);
     cout << "+= tested\n";
 
-    tp2 -= tp2;
-    assert(timespec_to_ms(tp2) == 0);
+    b_ts -= b_ts;
+    assert(timespec_to_ms(b_ts) == 0);
     cout << "-= tested\n";
 
     cout << "All tests passed.\n";

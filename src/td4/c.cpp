@@ -1,5 +1,5 @@
 #include <iostream>
-#include "td4/Semaphore.h"
+#include "Semaphore.h"
 #include "CProducer.h"
 #include <vector>
 using namespace std;

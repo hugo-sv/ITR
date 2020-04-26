@@ -1,6 +1,6 @@
 #ifndef Client_h_INCLUDED
 #define Client_h_INCLUDED
-#include "td4/Thread.h"
+#include "../td4/Thread.h"
 #include "ActiveCalc.h"
 
 using namespace std;

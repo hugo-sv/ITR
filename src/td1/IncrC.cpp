@@ -1,5 +1,6 @@
-#include "td1/posixHelpers.h"
+#include "posixHelpers.h"
 using namespace std;
+using namespace td1;
 
 void incr(unsigned int nLoops, double *pCounter)
 {
@@ -17,11 +18,11 @@ int main(int argc, char *argv[])
         nLoops = strtoul(argv[1], nullptr, 10);
     }
     double counter = 0.0;
-    struct timespec tp, exec_time;
-    tp = timespec_now();
+    struct timespec start_ts, exec_ts;
+    start_ts = timespec_now();
     incr(nLoops, &counter);
-    cout << "Valeur finale : " << counter << "\n";
+    cout << "Final Value : " << counter << "\n";
     // timespec_now() uses the Posix function clock_gettime
-    exec_time = (timespec_now() - tp);
-    cout << "Temps d'execution (s) : " << timespec_to_ms(exec_time) / 1000 << "\n";
+    exec_ts = (timespec_now() - start_ts);
+    cout << "Execution time (s) : " << timespec_to_ms(exec_ts) / 1000 << "\n";
 }

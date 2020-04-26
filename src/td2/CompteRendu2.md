@@ -1,5 +1,11 @@
 # [TD2] Familiarisation avec l’API multitâches pthread
 
+Pour compiler les fichiers, éxecuter la commande suivante à la racine du projet :
+
+`make td2`
+
+Les exécutables de chaque sous-questions seront dans le dossier `./build`.
+
 ## a) Exécution sur plusieurs tâches sans mutex
 
 Cette exécution est implémentée dans le fichier `withoutMutex.cpp`.

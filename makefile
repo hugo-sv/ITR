@@ -1,5 +1,5 @@
 CXX      := -g++
-CXXFLAGS := -I ./includes/ -Wall -Wextra -O3
+CXXFLAGS := -I -Wall -Wextra -O3
 LDFLAGS  := -lrt -pthread
 BUILD    := ./build
 

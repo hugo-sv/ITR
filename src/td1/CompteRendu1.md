@@ -1,12 +1,10 @@
 # [TD1] Mesure de temps et échantillonnage en temps
 
-Pour compiler les fichiers, à la racine du projet, éxecuter la commande :
+Pour compiler les fichiers, éxecuter la commande suivante à la racine du projet :
 
 `make td1`
 
-Les executables de chaque sous questions seront dans le dossier 
-
-`./build`
+Les exécutables de chaque sous-questions seront dans le dossier `./build`.
 
 ## a) Gestion simplifiée du temps Posix
 
@@ -26,7 +24,7 @@ Exécuter `build/td1_b.out` pour tester la fonction.
 
 ## c) Fonction simple consommant du CPU
 
-La fonction de l'incrément et le test sont implementésd dans le fichier `IncrC.cpp`.
+La fonction de l'incrément et le test sont implementés dans le fichier `IncrC.cpp`.
 
 Pour la tester, il faut l'executer avec la commande suivante : 
 ```build/td1_c.out 10000000```

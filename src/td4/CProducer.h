@@ -1,7 +1,7 @@
 #ifndef CProducer_h_INCLUDED
 #define CProducer_h_INCLUDED
-#include "td4/Thread.h"
-#include "td4/Semaphore.h"
+#include "Thread.h"
+#include "Semaphore.h"
 using namespace std;
 
 class CProducer : public Thread

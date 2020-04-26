@@ -1,5 +1,11 @@
 # [TD4] Classes de base pour la programmation multitâches
 
+Pour compiler les fichiers, éxecuter la commande suivante à la racine du projet :
+
+`make td4`
+
+Les exécutables de chaque sous-questions seront dans le dossier `./build`.
+
 ## a) Classe Thread
 
 Les classes `Thread` et `PosixThread` sont implémentés dans les fichiers `src/td4/Thread.cpp` et `src/td4/PosixThread.cpp`.
@@ -37,7 +43,7 @@ Ce script peut être exécuté avec la commande `build/td4_c.out`.
 
 ## c) Classe Fifo multitâches
 
-La classe `Fifo` est entierement implémentée dans le fichier `includes/td4/Fifo.hpp`.
+La classe `Fifo` est entierement implémentée dans le fichier `src/td4/Fifo.hpp`.
 
 Pour tester cette classe, le script `src/td4/d.cpp` utilise la classe `Cproducer`, implémentée dans le script `src/td4/Cproducer.cpp`.
 

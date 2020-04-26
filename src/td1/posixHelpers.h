@@ -1,8 +1,11 @@
 #include <iostream>
 #include <math.h>
-#ifndef Posix_h_INCLUDED
-#define Posix_h_INCLUDED
+#ifndef td1_Posix_h_INCLUDED
+#define td1_Posix_h_INCLUDED
 using namespace std;
+
+namespace td1
+{
 
 // Constants
 static const long ns_PER_s = 1000000000;
@@ -38,4 +41,7 @@ bool operator==(const timespec &time1_ts, const timespec &time2_ts);
 bool operator!=(const timespec &time1_ts, const timespec &time2_ts);
 bool operator<(const timespec &time1_ts, const timespec &time2_ts);
 bool operator>(const timespec &time1_ts, const timespec &time2_ts);
+
+} // namespace td1
+
 #endif

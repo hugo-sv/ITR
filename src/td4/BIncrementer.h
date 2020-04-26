@@ -1,7 +1,7 @@
 #ifndef BIncrementer_h_INCLUDED
 #define BIncrementer_h_INCLUDED
-#include "td4/Thread.h"
-#include "td4/Mutex.h"
+#include "Thread.h"
+#include "Mutex.h"
 using namespace std;
 
 class BIncrementer : public Thread

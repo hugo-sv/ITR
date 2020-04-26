@@ -2,9 +2,10 @@
 #define Calibrator_h_INCLUDED
 #include <iostream>
 #include <vector>
-#include "td1/posixHelpers.h"
 #include "PeriodicTimer.h"
 #include "Looper.h"
+#include "../td1/posixHelpers.h"
+using namespace td1;
 using namespace std;
 
 class Calibrator : public PeriodicTimer

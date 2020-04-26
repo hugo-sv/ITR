@@ -1,8 +1,9 @@
-#include "td1/posixHelpers.h"
+#include "posixHelpers.h"
 #include "posixTimer.cpp"
 #include <climits>
 #include <tuple>
 using namespace std;
+using namespace td1;
 
 unsigned incr(unsigned int nLoops, double *pCounter, volatile bool *pStop)
 {
@@ -60,15 +61,15 @@ int main()
     double maxInc = 10000000000;
     cout << "Estimated exectution time for " << maxInc << " loops (ms) : " << (maxInc - b) / a << "\n";
     // Execution
-    struct timespec tp, exec_time;
-    tp = timespec_now();
+    struct timespec start_ts, exec_ts;
+    start_ts = timespec_now();
     double inc = 0.0;
     while (inc < maxInc)
     {
         inc++;
     }
-    exec_time = (timespec_now() - tp);
-    cout << "Execution time (ms) : " << timespec_to_ms(exec_time) << "\n";
+    exec_ts = (timespec_now() - start_ts);
+    cout << "Execution time (ms) : " << timespec_to_ms(exec_ts) << "\n";
     // Comparing results
-    cout << "Relative error : " << 100 * ((maxInc - b) / a - timespec_to_ms(exec_time)) / timespec_to_ms(exec_time) << "%\n";
+    cout << "Relative error : " << 100 * ((maxInc - b) / a - timespec_to_ms(exec_ts)) / timespec_to_ms(exec_ts) << "%\n";
 }

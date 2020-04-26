@@ -1,6 +1,6 @@
 #ifndef AIncrementer_h_INCLUDED
 #define AIncrementer_h_INCLUDED
-#include "td4/Thread.h"
+#include "Thread.h"
 using namespace std;
 
 class AIncrementer : public Thread

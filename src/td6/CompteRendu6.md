@@ -1,5 +1,11 @@
 # [TD6] Object actif
 
+Pour compiler les fichiers, éxecuter la commande suivante à la racine du projet :
+
+`make td6`
+
+L'executable est dans le dossier `./build`.
+
 Les classes `ActiveObject`, `Request`, `ActiveCalc`, `Calculator` et `CrunchReq` sont implémentés dans le dossier `src/td4/`.
 
 Le script `src/td4/main.cpp` permet de tester ces implémentations avec la classe `Client`.

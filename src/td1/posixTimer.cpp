@@ -1,8 +1,8 @@
-#include "td1/posixHelpers.h"
+#include "posixHelpers.h"
 #include <signal.h>
 using namespace std;
 
-timer_t timer(void (*myHandler)(int, siginfo_t *, void *), timespec value, timespec interval, void *data)
+timer_t timer(void (*myHandler)(int, siginfo_t *, void *), timespec value_ts, timespec interval_ts, void *data)
 {
     struct sigaction sa;
     sa.sa_flags = SA_SIGINFO;
@@ -19,8 +19,8 @@ timer_t timer(void (*myHandler)(int, siginfo_t *, void *), timespec value, times
     timer_t tid;
     timer_create(CLOCK_REALTIME, &sev, &tid);
     itimerspec its;
-    its.it_value = value;
-    its.it_interval = interval;
+    its.it_value = value_ts;
+    its.it_interval = interval_ts;
     timer_settime(tid, 0, &its, nullptr);
     // The timer must be deleted with timer_delete(tid);
     return tid;

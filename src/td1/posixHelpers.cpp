@@ -1,7 +1,10 @@
 #include <iostream>
 #include <math.h>
-#include "td1/posixHelpers.h"
+#include "posixHelpers.h"
 using namespace std;
+
+namespace td1
+{
 
 double timespec_to_ms(const timespec &time_ts)
 {
@@ -22,9 +25,9 @@ timespec timespec_from_ms(double time_ms)
 
 timespec timespec_now()
 {
-    struct timespec abstime;
-    clock_gettime(CLOCK_REALTIME, &abstime);
-    return abstime;
+    struct timespec abs_ts;
+    clock_gettime(CLOCK_REALTIME, &abs_ts);
+    return abs_ts;
 }
 
 // Function displaying a timespec attributes
@@ -52,23 +55,23 @@ timespec timespec_substract(const timespec &time1_ts, const timespec &time2_ts)
 
 timespec timespec_try_wait(const timespec &delay_ts)
 {
-    struct timespec tp;
-    if (nanosleep(&delay_ts, &tp) == -1)
+    struct timespec temp_ts;
+    if (nanosleep(&delay_ts, &temp_ts) == -1)
     {
-        return tp;
+        return temp_ts;
     }
     return timespec_from_ms(0);
 }
 
 timespec timespec_wait(const timespec &delay_ts)
 {
-    struct timespec tp_temp;
-    tp_temp = timespec_try_wait(delay_ts);
-    while (timespec_to_ms(tp_temp) != 0)
+    struct timespec temp_ts;
+    temp_ts = timespec_try_wait(delay_ts);
+    while (timespec_to_ms(temp_ts) != 0)
     {
-        tp_temp = timespec_wait(tp_temp);
+        temp_ts = timespec_wait(temp_ts);
     }
-    return tp_temp;
+    return temp_ts;
 }
 
 timespec operator-(const timespec &time_ts)
@@ -108,4 +111,6 @@ bool operator<(const timespec &time1_ts, const timespec &time2_ts)
 bool operator>(const timespec &time1_ts, const timespec &time2_ts)
 {
     return timespec_to_ms(time1_ts) > timespec_to_ms(time2_ts);
+}
+
 }

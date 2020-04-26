@@ -1,4 +1,4 @@
-#include "td4/Thread.h"
+#include "Thread.h"
 
 Thread::Thread() : PosixThread()
 {

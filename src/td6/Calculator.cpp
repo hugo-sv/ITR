@@ -1,6 +1,7 @@
 #include "Calculator.h"
-#include "td1/posixHelpers.h"
+#include "../td1/posixHelpers.h"
 #include <math.h>
+using namespace td1;
 
 Calculator::Calculator()
 {

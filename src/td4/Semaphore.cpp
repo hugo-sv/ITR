@@ -1,4 +1,4 @@
-#include "td4/Semaphore.h"
+#include "Semaphore.h"
 
 Semaphore::Semaphore(unsigned int initCount = 0, unsigned int maxCount = UINT16_MAX) : count(initCount), maxCount(maxCount)
 {

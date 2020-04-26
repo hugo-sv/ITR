@@ -1,6 +1,7 @@
-#include "td1/posixHelpers.h"
+#include "../td1/posixHelpers.h"
 #include <tuple>
 using namespace std;
+using namespace td1;
 
 void incr(unsigned int nLoops, double *pCounter)
 {
