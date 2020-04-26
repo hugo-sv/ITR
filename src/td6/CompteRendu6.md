@@ -8,7 +8,7 @@ L'executable est dans le dossier `./build`.
 
 Les classes `ActiveObject`, `Request`, `ActiveCalc`, `Calculator` et `CrunchReq` sont implémentés dans le dossier `src/td4/`.
 
-Le script `src/td4/main.cpp` permet de tester ces implémentations avec la classe `Client`.
+Le script `src/td4/main_td6.cpp` permet de tester ces implémentations avec la classe `Client`.
 
 Celle-ci soumet un calcul avec sa `seed` comme paramètre au calculateur, poursuit d'autres instruction (patiente 1 500 ms), puis attend le résultat.
 
