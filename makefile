@@ -23,6 +23,10 @@ td4: src/td1/posixHelpers.o src/td4/PosixThread.o src/td4/Thread.o src/td4/Mutex
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td4_c.out src/td1/posixHelpers.o src/td4/PosixThread.o src/td4/Thread.o src/td4/Mutex.o src/td4/Semaphore.o src/td4/CProducer.o src/td4/c.o $(LDFLAGS)
 	$(CXX) $(CXXFLAGS) -o $(BUILD)/td4_d.out src/td1/posixHelpers.o src/td4/PosixThread.o src/td4/Thread.o src/td4/Mutex.o src/td4/DProducer.o src/td4/d.o $(LDFLAGS)
 
+td6: src/td1/posixHelpers.o src/td4/PosixThread.o src/td4/Thread.o src/td4/Mutex.o  src/td4/Semaphore.o src/td6/ActiveCalc.o src/td6/ActiveObject.o src/td6/Calculator.o src/td6/Client.o src/td6/CrunchReq.o src/td6/Request.o src/td6/main.o
+	$(CXX) $(CXXFLAGS) -o $(BUILD)/td6.out  src/td1/posixHelpers.o src/td4/PosixThread.o src/td4/Thread.o src/td4/Mutex.o  src/td4/Semaphore.o src/td6/ActiveCalc.o src/td6/ActiveObject.o src/td6/Calculator.o src/td6/Client.o src/td6/CrunchReq.o src/td6/Request.o src/td6/main.o $(LDFLAGS)
+
+
 clean: 
 	rm -rvf build/*
 	rm -f src/*/*.o
