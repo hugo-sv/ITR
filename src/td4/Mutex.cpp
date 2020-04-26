@@ -1,5 +1,6 @@
 #include "Mutex.h"
-using namespace td4;
+namespace td4
+{
 
 Mutex::Mutex()
 {
@@ -93,4 +94,6 @@ Mutex::Monitor::TimeoutException::TimeoutException() : exception()
 const char *Mutex::Monitor::TimeoutException::what() const noexcept
 {
     return "Timeout waiting for condition";
+}
+
 }

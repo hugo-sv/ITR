@@ -1,5 +1,6 @@
 #include "Thread.h"
-using namespace td4;
+namespace td4
+{
 
 Thread::Thread() : PosixThread()
 {
@@ -55,4 +56,6 @@ void *Thread::call_run(void *v_thread)
     t_thread->stopTime_ = timespec_now();
     t_thread->started = false;
     return v_thread;
+}
+
 }

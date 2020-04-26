@@ -1,5 +1,6 @@
 #include "CProducer.h"
-using namespace td4;
+namespace td4
+{
 
 CProducer::CProducer(Semaphore &s, int id) : Thread(), id(id), s(s) {}
 
@@ -13,4 +14,6 @@ void CProducer::run()
     // Giving a token
     this->s.give();
     cout << "\tProducer " << this->id << " gave a token" << endl;
+}
+
 }

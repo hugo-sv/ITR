@@ -1,5 +1,6 @@
 #include "Chrono.h"
-using namespace td3;
+namespace td3
+{
 
 Chrono::Chrono()
 {
@@ -35,4 +36,6 @@ double Chrono::lap()
         return timespec_to_ms(timespec_now()) - this->startTime();
     }
     return this->stopTime() - this->startTime();
+}
+
 }

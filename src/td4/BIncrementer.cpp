@@ -1,5 +1,6 @@
 #include "BIncrementer.h"
-using namespace td4;
+namespace td4
+{
 
 BIncrementer::BIncrementer(void *data, int count, Mutex &mut) : Thread(), data(data), count(count), mut(mut) {}
 
@@ -10,4 +11,6 @@ void BIncrementer::run()
         Mutex::Lock lock = Mutex::Lock(this->mut);
         *(volatile int *)(this->data) += 1;
     }
+}
+
 }

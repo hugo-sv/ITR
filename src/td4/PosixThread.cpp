@@ -1,5 +1,6 @@
 #include "PosixThread.h"
-using namespace td4;
+namespace td4
+{
 
 PosixThread::PosixThread()
 {
@@ -78,4 +79,6 @@ bool PosixThread::getScheduling(int *p_schedPolicy, int *p_priority)
         *p_priority = schedParams.sched_priority;
     }
     return this->isActive;
+}
+
 }

@@ -1,5 +1,6 @@
 #include "Timer.h"
-using namespace td3;
+namespace td3
+{
 
 Timer::Timer()
 {
@@ -43,4 +44,6 @@ void Timer::call_callback(int, siginfo_t *si, void *)
 {
     static Timer* t = (Timer *)si->si_value.sival_ptr;
     t->callback();
+}
+
 }

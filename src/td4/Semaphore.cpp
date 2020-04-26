@@ -1,5 +1,6 @@
 #include "Semaphore.h"
-using namespace td4;
+namespace td4
+{
 
 Semaphore::Semaphore(unsigned int initCount = 0, unsigned int maxCount = UINT16_MAX) : count(initCount), maxCount(maxCount)
 {
@@ -47,4 +48,6 @@ bool Semaphore::take(double timeout_ms)
         this->count++;
     }
     return result;
+}
+
 }

@@ -1,5 +1,6 @@
 #include "CountDown.h"
-using namespace td3;
+namespace td3
+{
 
 CountDown::CountDown(int n) : countDown(n)
 {
@@ -18,4 +19,6 @@ void CountDown::callback()
 void CountDown::start()
 {
     PeriodicTimer::start(1000);
+}
+
 }

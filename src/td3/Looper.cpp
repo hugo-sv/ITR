@@ -1,5 +1,6 @@
 #include "Looper.h"
-using namespace td3;
+namespace td3
+{
 
 double Looper::runLoop(double nLoops)
 {
@@ -19,4 +20,6 @@ double Looper::stopLoop()
 {
     doStop = true;
     return iLoop;
+}
+
 }

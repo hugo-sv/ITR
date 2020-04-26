@@ -1,6 +1,8 @@
 #include "Calibrator.h"
 using namespace std;
-using namespace td3;
+
+namespace td3
+{
 
 Calibrator::Calibrator(double samplingPeriod, unsigned nSamples) : nSamples(nSamples)
 {
@@ -58,4 +60,6 @@ void Calibrator::CpuLoop::runtime(double duration_ms)
     clock_gettime(CLOCK_REALTIME, &finish);
     cout<< "Theoretical time : " << duration_ms << " ms" << endl;
     cout<< "Practical time : " << timespec_to_ms(timespec_substract(finish, start)) << " ms" << endl;
+}
+
 }
